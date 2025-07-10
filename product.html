@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | Nutracon Pharma</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="product.css" />
+</head>
+<body>
+
+  <!-- 🔥 EXACT SAME TOP HEADER FROM HOME -->
+  <div class="top-header">
+    <div class="top-header-content">
+      <div class="contact-info">
+        <span><i class="fas fa-phone"></i> +1 (555) 123-4567</span>
+        <span><i class="fas fa-envelope"></i> info@nutraconpharma.com</span>
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔥 EXACT SAME NAVBAR FROM HOME -->
+  <header>
+    <div class="navbar">
+      <div class="logo" data-translate="logo">Nutracon Pharma</div>
+
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-translate="nav-home">Home</a></li>
+        <li><a href="#" data-translate="nav-about">About&nbsp;Us</a></li>
+        <li><a href="product.html" class="active" data-translate="nav-products">Products</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Events</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Product Hero Section -->
+<section class="product-hero">
+  <h1>Our Products</h1>
+  <p>Discover our comprehensive range of pharmaceutical products designed to improve health and well-being</p>
+</section>
+
+<!-- Product Cards Grid -->
+<section class="product-grid">
+  <div class="product-card">
+    <img src="assets/product1.png" alt="Fladecort 6">
+    <h3>Fladecort 6</h3>
+    <p>A potent glucocorticoid used to treat a wide range of inflammatory and autoimmune conditions.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+  <div class="product-card">
+    <img src="assets/product2.png" alt="Linzocast 600">
+    <h3>Linzocast 600</h3>
+    <p>Used for treating serious infections caused by multi-drug resistant bacteria.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+  <div class="product-card">
+    <img src="assets/product3.png" alt="Livofolate">
+    <h3>Livofolate</h3>
+    <p>A formula with B-vitamins and Omega-3 to support nerve, brain, and heart health.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+  <div class="product-card">
+    <img src="assets/product4.png" alt="Livozorb XT">
+    <h3>Livozorb XT Syp</h3>
+    <p>An iron supplement syrup ideal for treating iron deficiency anemia.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+
+  <div class="product-card">
+    <img src="assets/product2.png" alt="Livozorb XT">
+    <h3>Livozorb XT Syp</h3>
+    <p>An iron supplement syrup ideal for treating iron deficiency anemia.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+
+  <div class="product-card">
+    <img src="assets/product1.png" alt="Livozorb XT">
+    <h3>Livozorb XT Syp</h3>
+    <p>An iron supplement syrup ideal for treating iron deficiency anemia.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+
+  <div class="product-card">
+    <img src="assets/product4.png" alt="Livozorb XT">
+    <h3>Livozorb XT Syp</h3>
+    <p>An iron supplement syrup ideal for treating iron deficiency anemia.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+
+  <div class="product-card">
+    <img src="assets/product3.png" alt="Livozorb XT">
+    <h3>Livozorb XT Syp</h3>
+    <p>An iron supplement syrup ideal for treating iron deficiency anemia.</p>
+    <a href="#" class="learn-btn">Learn More</a>
+  </div>
+
+</section>
+
+<!-- Product Categories -->
+<section class="product-categories">
+  <h2>Product Categories</h2>
+  <p>Our products span across multiple therapeutic areas to address diverse healthcare needs</p>
+  <div class="category-grid">
+    <div class="category-card"><i class="fas fa-heart"></i> Cardiovascular</div>
+    <div class="category-card"><i class="fas fa-brain"></i> Neurology</div>
+    <div class="category-card"><i class="fas fa-shield-virus"></i> Antibiotics</div>
+    <div class="category-card"><i class="fas fa-bone"></i> Bone Health</div>
+  </div>
+</section>
+
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
