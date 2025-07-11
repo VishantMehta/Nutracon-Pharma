@@ -449,11 +449,22 @@ const productsData = [
     id: 6,
     name: 'MedFlow System',
     description: 'Streamlined medical delivery system optimizing treatment protocols for healthcare providers.',
-    image: 'assets/med7.png',
+    image: 'assets/product2.png',
+    category: 'professional',
+    rating: 4.8,
+    featured: true
+  },
+  
+  {
+    id: 8,
+    name: 'MedFlow System',
+    description: 'Streamlined medical delivery system optimizing treatment protocols for healthcare providers.',
+    image: 'assets/med8.jpg',
     category: 'professional',
     rating: 4.8,
     featured: true
   }
+  
 ];
 
 // Products Manager Class
@@ -925,3 +936,151 @@ window.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(section);
 });
+
+
+// last section 
+ // Enhanced JavaScript functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Create floating particles
+            function createFloatingParticles(card) {
+                const particlesContainer = card.querySelector('.principles-floating-particles');
+                if (!particlesContainer) return;
+
+                // Clear existing particles
+                particlesContainer.innerHTML = '';
+
+                // Create random floating particles
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'principles-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 6 + 's';
+                    particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                    particle.style.animation = `floatParticle ${particle.style.animationDuration} infinite ease-in-out ${particle.style.animationDelay}`;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // Enhanced 3D hover effect
+            function setupCardInteractions() {
+                const cards = document.querySelectorAll('.principles-hero-card');
+                
+                cards.forEach((card) => {
+                    // Create initial particles
+                    createFloatingParticles(card);
+
+                    // Mouse move for 3D effect
+                    card.addEventListener('mousemove', function(e) {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateX = (y - centerY) / 15;
+                        const rotateY = (centerX - x) / 15;
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.03)`;
+                    });
+
+                    // Reset transform on mouse leave
+                    card.addEventListener('mouseleave', function() {
+                        card.style.transform = '';
+                    });
+
+                    // Refresh particles on hover
+                    card.addEventListener('mouseenter', function() {
+                        createFloatingParticles(card);
+                    });
+
+                    // Add click effect
+                    card.addEventListener('click', function() {
+                        card.style.transform = 'scale(0.98)';
+                        setTimeout(() => {
+                            card.style.transform = '';
+                        }, 150);
+                    });
+                });
+            }
+
+            // Scroll animations using Intersection Observer
+            function setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            target.style.opacity = '1';
+                            target.style.transform = 'translateY(0)';
+                            target.style.transitionDelay = `${index * 200}ms`;
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe cards for scroll animation
+                const cards = document.querySelectorAll('.principles-hero-card');
+                cards.forEach((card) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(40px)';
+                    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    observer.observe(card);
+                });
+            }
+
+            // Add smooth scroll behavior
+            function setupSmoothScroll() {
+                const discoverMore = document.querySelector('.discover-more');
+                discoverMore.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Add keyboard navigation
+            function setupKeyboardNavigation() {
+                const cards = document.querySelectorAll('.principles-hero-card');
+                cards.forEach((card, index) => {
+                    card.setAttribute('tabindex', '0');
+                    card.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            card.click();
+                        }
+                    });
+                });
+            }
+
+            // Initialize all functionality
+            setupCardInteractions();
+            setupScrollAnimations();
+            setupSmoothScroll();
+            setupKeyboardNavigation();
+
+            // Add dynamic background effect
+            function createBackgroundEffect() {
+                const container = document.querySelector('.principles-hero-section-container');
+                
+                document.addEventListener('mousemove', function(e) {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    container.style.background = `
+                        radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.02) 0%, transparent 50%),
+                        linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)
+                    `;
+                });
+            }
+
+            createBackgroundEffect();
+
+            console.log('Core Principles - Enhanced version loaded successfully!');
+        });
