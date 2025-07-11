@@ -394,3 +394,534 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+// Products Page JavaScript
+
+// Product Data
+const productsData = [
+  {
+    id: 1,
+    name: 'MediCore Advanced',
+    description: 'Revolutionary pharmaceutical solution for enhanced therapeutic outcomes with cutting-edge biotechnology.',
+    image: 'assets/med5.png',
+    category: 'advanced',
+    rating: 4.9,
+    featured: true
+  },
+  {
+    id: 2,
+    name: 'VitalGuard Pro',
+    description: 'Comprehensive health management system designed for optimal patient care and treatment efficiency.',
+    image: 'assets/med6.png',
+    category: 'professional',
+    rating: 4.8,
+    featured: true
+  },
+  {
+    id: 3,
+    name: 'TherapyMax Elite',
+    description: 'Premium therapeutic formulation delivering superior clinical results with proven effectiveness.',
+    image: 'assets/med3.jpg',
+    category: 'premium',
+    rating: 4.7,
+    featured: false
+  },
+  {
+    id: 4,
+    name: 'BioSafe Complete',
+    description: 'Innovative biosafety solution ensuring maximum protection and compliance with healthcare standards.',
+    image: 'assets/med4.png',
+    category: 'safety',
+    rating: 4.9,
+    featured: true
+  },
+  {
+    id: 5,
+    name: 'PharmaCore Plus',
+    description: 'Advanced pharmaceutical compound engineered for superior bioavailability and patient comfort.',
+    image: 'assets/med1.webp',
+    category: 'advanced',
+    rating: 4.6,
+    featured: false
+  },
+  {
+    id: 6,
+    name: 'MedFlow System',
+    description: 'Streamlined medical delivery system optimizing treatment protocols for healthcare providers.',
+    image: 'assets/med7.png',
+    category: 'professional',
+    rating: 4.8,
+    featured: true
+  }
+];
+
+// Products Manager Class
+class ProductsManager {
+  constructor() {
+    this.filteredProducts = [...productsData];
+    this.currentSlide = 0;
+    this.itemsPerSlide = this.getItemsPerSlide();
+    this.isAutoSliding = true;
+    this.autoSlideInterval = null;
+    
+    this.init();
+  }
+  
+  init() {
+    this.renderProducts();
+    this.bindEvents();
+    this.startStatsAnimation();
+    this.updateCarouselControls();
+    this.startAutoSlide();
+  }
+  
+  // Event Binding
+  bindEvents() {
+    // Search functionality
+    const searchInput = document.getElementById('productSearch');
+    searchInput.addEventListener('input', this.debounce(() => {
+      this.filterProducts();
+    }, 300));
+    
+    // Filter functionality
+    const categoryFilter = document.getElementById('categoryFilter');
+    categoryFilter.addEventListener('change', () => {
+      this.filterProducts();
+    });
+    
+    // Carousel controls
+    document.getElementById('prevProductBtn').addEventListener('click', () => {
+      this.prevSlide();
+    });
+    
+    document.getElementById('nextProductBtn').addEventListener('click', () => {
+      this.nextSlide();
+    });
+    
+    // Modal events
+    document.getElementById('modalClose').addEventListener('click', () => {
+      this.closeModal();
+    });
+    
+    document.getElementById('productModal').addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-backdrop')) {
+        this.closeModal();
+      }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        this.prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        this.nextSlide();
+      }
+    });
+    
+    // Window resize
+    window.addEventListener('resize', this.debounce(() => {
+      this.itemsPerSlide = this.getItemsPerSlide();
+      this.currentSlide = 0;
+      this.updateCarouselControls();
+      this.updateCarouselPosition();
+    }, 250));
+    
+    // Pause auto-slide on hover
+    const carousel = document.querySelector('.products-carousel');
+    carousel.addEventListener('mouseenter', () => {
+      this.stopAutoSlide();
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      this.startAutoSlide();
+    });
+  }
+  
+  // Get items per slide based on screen size
+  getItemsPerSlide() {
+    const width = window.innerWidth;
+    if (width <= 480) return 1;
+    if (width <= 768) return 2;
+    if (width <= 1024) return 3;
+    return 4;
+  }
+  
+  // Debounce utility
+  debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+  
+  // Filter products based on search and category
+  filterProducts() {
+    const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+    const selectedCategory = document.getElementById('categoryFilter').value;
+    
+    this.filteredProducts = productsData.filter(product => {
+      const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
+                           product.description.toLowerCase().includes(searchTerm);
+      const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+    
+    this.currentSlide = 0;
+    this.renderProducts();
+    this.updateCarouselControls();
+  }
+  
+  // Render products
+  renderProducts() {
+    const track = document.getElementById('productsTrack');
+    const noResults = document.getElementById('noResults');
+    
+    if (this.filteredProducts.length === 0) {
+      track.innerHTML = '';
+      noResults.style.display = 'block';
+      return;
+    }
+    
+    noResults.style.display = 'none';
+    
+    track.innerHTML = this.filteredProducts.map(product => `
+      <div class="product-card" data-product-id="${product.id}">
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}" loading="lazy">
+          ${product.featured ? `
+            <div class="featured-badge">
+              <i class="fas fa-star"></i>
+              Featured
+            </div>
+          ` : ''}
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <h3>${product.name}</h3>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <span>${product.rating}</span>
+            </div>
+          </div>
+          <p>${product.description}</p>
+          <div class="product-category">${product.category}</div>
+          <button class="learn-more-btn" onclick="productsManager.openModal(${product.id})">
+            Learn More <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    `).join('');
+    
+    this.updateCarouselPosition();
+    this.createIndicators();
+  }
+  
+  // Carousel navigation
+  prevSlide() {
+    if (this.currentSlide > 0) {
+      this.currentSlide--;
+      this.updateCarouselPosition();
+      this.updateCarouselControls();
+    }
+  }
+  
+  nextSlide() {
+    const maxSlides = Math.ceil(this.filteredProducts.length / this.itemsPerSlide) - 1;
+    if (this.currentSlide < maxSlides) {
+      this.currentSlide++;
+      this.updateCarouselPosition();
+      this.updateCarouselControls();
+    }
+  }
+  
+  goToSlide(index) {
+    this.currentSlide = index;
+    this.updateCarouselPosition();
+    this.updateCarouselControls();
+  }
+  
+  // Update carousel position
+  updateCarouselPosition() {
+    const track = document.getElementById('productsTrack');
+    const cardWidth = this.getCardWidth();
+    const gap = this.getGap();
+    const translateX = this.currentSlide * this.itemsPerSlide * (cardWidth + gap);
+    
+    track.style.transform = `translateX(-${translateX}px)`;
+  }
+  
+  // Get card width based on screen size
+  getCardWidth() {
+    const width = window.innerWidth;
+    if (width <= 480) return 220;
+    if (width <= 768) return 250;
+    if (width <= 1024) return 280;
+    return 300;
+  }
+  
+  // Get gap between cards
+  getGap() {
+    const width = window.innerWidth;
+    if (width <= 768) return 20;
+    return 30;
+  }
+  
+  // Update carousel controls
+  updateCarouselControls() {
+    const maxSlides = Math.ceil(this.filteredProducts.length / this.itemsPerSlide) - 1;
+    
+    document.getElementById('prevProductBtn').disabled = this.currentSlide === 0;
+    document.getElementById('nextProductBtn').disabled = this.currentSlide >= maxSlides;
+    
+    this.updateIndicators();
+  }
+  
+  // Create carousel indicators
+  createIndicators() {
+    const indicatorsContainer = document.getElementById('carouselIndicators');
+    const totalSlides = Math.ceil(this.filteredProducts.length / this.itemsPerSlide);
+    
+    if (totalSlides <= 1) {
+      indicatorsContainer.innerHTML = '';
+      return;
+    }
+    
+    indicatorsContainer.innerHTML = Array.from({ length: totalSlides }, (_, index) => `
+      <button class="indicator ${index === this.currentSlide ? 'active' : ''}" 
+              onclick="productsManager.goToSlide(${index})">
+      </button>
+    `).join('');
+  }
+  
+  // Update indicators
+  updateIndicators() {
+    const indicators = document.querySelectorAll('.indicator');
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentSlide);
+    });
+  }
+  
+  // Auto-slide functionality
+  startAutoSlide() {
+    if (this.autoSlideInterval) return;
+    
+    this.autoSlideInterval = setInterval(() => {
+      const maxSlides = Math.ceil(this.filteredProducts.length / this.itemsPerSlide) - 1;
+      if (this.currentSlide >= maxSlides) {
+        this.currentSlide = 0;
+      } else {
+        this.currentSlide++;
+      }
+      this.updateCarouselPosition();
+      this.updateCarouselControls();
+    }, 4000);
+  }
+  
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
+    }
+  }
+  
+  // Modal functionality
+  openModal(productId) {
+    const product = productsData.find(p => p.id === productId);
+    if (!product) return;
+    
+    const modal = document.getElementById('productModal');
+    
+    document.getElementById('modalProductImage').src = product.image;
+    document.getElementById('modalProductImage').alt = product.name;
+    document.getElementById('modalProductName').textContent = product.name;
+    document.getElementById('modalProductDescription').textContent = product.description;
+    document.getElementById('modalRating').textContent = product.rating;
+    document.getElementById('modalCategory').textContent = product.category;
+    
+    const badge = document.getElementById('modalBadge');
+    badge.style.display = product.featured ? 'flex' : 'none';
+    
+    // Update stars based on rating
+    const stars = document.querySelectorAll('.modal-rating .stars i');
+    const rating = Math.floor(product.rating);
+    stars.forEach((star, index) => {
+      star.style.opacity = index < rating ? '1' : '0.3';
+    });
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+      modal.classList.add('active');
+    }, 10);
+  }
+  
+  closeModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('active');
+    
+    setTimeout(() => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 300);
+  }
+  
+  // Statistics animation
+  startStatsAnimation() {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          element.classList.add('visible');
+          
+          // Animate the number
+          const numberElement = element.querySelector('.stat-number');
+const targetCount = parseInt(numberElement.dataset.count);
+
+          this.animateNumber(numberElement, targetCount);
+          
+          observer.unobserve(element);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.stat-item').forEach(item => {
+      observer.observe(item);
+    });
+  }
+  
+  // Animate numbers
+  animateNumber(element, target) {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      element.textContent = Math.floor(current);
+    }, 30);
+  }
+}
+
+// Touch/Swipe Support
+class TouchHandler {
+  constructor(element, callback) {
+    this.element = element;
+    this.callback = callback;
+    this.startX = 0;
+    this.currentX = 0;
+    this.isDragging = false;
+    
+    this.bindEvents();
+  }
+  
+  bindEvents() {
+    this.element.addEventListener('touchstart', this.handleStart.bind(this), { passive: false });
+    this.element.addEventListener('touchmove', this.handleMove.bind(this), { passive: false });
+    this.element.addEventListener('touchend', this.handleEnd.bind(this), { passive: false });
+    
+    // Mouse events for desktop
+    this.element.addEventListener('mousedown', this.handleStart.bind(this));
+    this.element.addEventListener('mousemove', this.handleMove.bind(this));
+    this.element.addEventListener('mouseup', this.handleEnd.bind(this));
+    this.element.addEventListener('mouseleave', this.handleEnd.bind(this));
+  }
+  
+  handleStart(e) {
+    this.isDragging = true;
+    this.startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+  }
+  
+  handleMove(e) {
+    if (!this.isDragging) return;
+    
+    this.currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const deltaX = this.startX - this.currentX;
+    
+    if (Math.abs(deltaX) > 20) {
+      e.preventDefault();
+    }
+  }
+  
+  handleEnd(e) {
+    if (!this.isDragging) return;
+    
+    this.isDragging = false;
+    const deltaX = this.startX - this.currentX;
+    const threshold = 50;
+    
+    if (Math.abs(deltaX) > threshold) {
+      this.callback(deltaX > 0 ? 'next' : 'prev');
+    }
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize products manager
+  window.productsManager = new ProductsManager();
+  
+  // Add touch support to carousel
+  const carousel = document.querySelector('.products-container');
+  new TouchHandler(carousel, (direction) => {
+    if (direction === 'next') {
+      productsManager.nextSlide();
+    } else {
+      productsManager.prevSlide();
+    }
+  });
+  
+  // Smooth scroll to products when coming from external links
+  const hash = window.location.hash;
+  if (hash === '#products') {
+    setTimeout(() => {
+      document.querySelector('.products-main').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }, 100);
+  }
+});
+
+// Add to existing window resize handler
+window.addEventListener('resize', () => {
+  if (window.productsManager) {
+    window.productsManager.itemsPerSlide = window.productsManager.getItemsPerSlide();
+    window.productsManager.currentSlide = 0;
+    window.productsManager.updateCarouselControls();
+    window.productsManager.updateCarouselPosition();
+  }
+});
+
+// Export for global access
+window.ProductsManager = ProductsManager;
+
+
+//about us section 
+window.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.company-about-wrapper');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section.classList.add('visible');
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(section);
+});
