@@ -11,6 +11,9 @@ body {
   color: #111;
 }
 
+
+
+
 /* Top Header */
 .top-header {
   background-color: #000;
@@ -90,6 +93,7 @@ header {
   font-weight: 700;
   color: #1c1c1c;
   line-height: 1;
+  text-decoration: none;
 }
 
 .logo.gradient-text {

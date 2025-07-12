@@ -1,4 +1,12 @@
 
+// preloader
+
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.querySelector('.preloader').classList.add('hidden');
+    }, 1000);
+});
+
 
 // for hamburger toggling 
 function toggleMenu() {
