@@ -2314,3 +2314,28 @@ header {
                 padding: 1.5rem;
             }
         }
+
+/* Sexy Black Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000; /* Full black background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(145deg, #444, #666); /* Stylish grey gradient */
+  border-radius: 10px;
+  border: 2px solid #000; /* Border to blend with track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(145deg, #666, #888); /* Lighter on hover */
+}
+
+/* Firefox (optional) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #000;
+}
