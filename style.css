@@ -232,6 +232,10 @@ header {
     gap: 20px;
   }
   
+  .contact-info span:first-child {
+    display: none;
+  }
+
   .hero {
     padding: 80px 20px 60px;
   }
