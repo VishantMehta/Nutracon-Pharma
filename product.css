@@ -269,6 +269,11 @@ header {
     gap: 10px;
   }
 
+  
+  .contact-info span:first-child {
+    display: none;
+  }
+
   .social-links {
     justify-content: center;
   }
