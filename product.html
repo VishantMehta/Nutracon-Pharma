@@ -33,7 +33,8 @@
   <!-- 🔥 EXACT SAME NAVBAR FROM HOME -->
   <header>
     <div class="navbar">
-      <div class="logo" data-translate="logo">Nutracon Pharma</div>
+      <a href="index.html" class="logo" data-translate="logo">Nutracon Pharma</a>
+
 
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
         <i class="fas fa-bars"></i>
@@ -51,12 +52,20 @@
 
   <!-- Product Hero Section -->
 <section class="product-hero">
-  <h1>Our Products</h1>
-  <p>Discover our comprehensive range of pharmaceutical products designed to improve health and well-being</p>
+  <div class="hero-content">
+    <h1>Our Products</h1>
+    <p class="subheading">
+      Discover our comprehensive range of pharmaceutical products designed to improve health and well-being.
+    </p>
+    <p class="description">
+      From advanced antibiotics and potent anti-inflammatory solutions to essential vitamins and minerals, Nutracon Pharma is dedicated to delivering healthcare solutions that are safe, effective, and accessible. Explore our catalog of trusted formulations used by healthcare professionals worldwide.
+    </p>
+    <a href="#product-grid" class="explore-btn">Explore Products</a>
+  </div>
 </section>
 
 <!-- Product Cards Grid -->
-<section class="product-grid">
+<section class="product-grid" id="product-grid">
   <div class="product-card">
     <img src="assets/product1.png" alt="Fladecort 6">
     <h3>Fladecort 6</h3>
@@ -175,10 +184,23 @@
 
 
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById('navLinks');
-      navLinks.classList.toggle('show');
-    }
+    
+// for hamburger toggling 
+function toggleMenu() {
+  const nav = document.getElementById("navLinks");
+  const icon = document.getElementById("hamburger").querySelector("i");
+
+  nav.classList.toggle("active");
+
+  if (nav.classList.contains("active")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-times");
+  } else {
+    icon.classList.remove("fa-times");
+    icon.classList.add("fa-bars");
+  }
+}
+    
   </script>
 </body>
 </html>
