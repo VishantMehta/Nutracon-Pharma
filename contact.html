@@ -10,7 +10,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="about.css" />
+  <link rel="stylesheet" href="contact.css" />
 </head>
 <body>
 
@@ -51,7 +51,71 @@
   </header>
 
  
+<!-- main form -->
+ <!-- Contact Form -->
+  <div class="container">
+    <div class="form-header">
+      <h1 class="form-title">Contact Me</h1>
+      <p class="form-subtitle">Let's start a conversation</p>
+    </div>
 
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          class="form-input" 
+          placeholder="Your Name"
+          required
+        >
+        <div class="error-message" id="nameError">Please enter your name</div>
+      </div>
+
+      <div class="form-group">
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          class="form-input" 
+          placeholder="Your Email"
+          required
+        >
+        <div class="error-message" id="emailError">Please enter a valid email address</div>
+      </div>
+
+      <div class="form-group">
+        <input 
+          type="text" 
+          id="subject" 
+          name="subject" 
+          class="form-input" 
+          placeholder="Subject"
+          required
+        >
+        <div class="error-message" id="subjectError">Please enter a subject</div>
+      </div>
+
+      <div class="form-group">
+        <textarea 
+          id="message" 
+          name="message" 
+          class="form-textarea" 
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <div class="error-message" id="messageError">Please enter your message</div>
+      </div>
+
+      <button type="submit" class="form-button" id="submitBtn">
+        Send Message
+      </button>
+
+      <div class="success-message" id="successMessage">
+        Thank you! Your message has been sent successfully.
+      </div>
+    </form>
+  </div>
 
 
 <!-- Footer -->
@@ -114,6 +178,126 @@ function toggleMenu() {
     icon.classList.add("fa-bars");
   }
 }
+
+
+// form js starts here 
+  // Form validation and submission
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
+
+      // Form validation
+      function validateField(field, errorElement, validationFn) {
+        const isValid = validationFn(field.value);
+        if (isValid) {
+          errorElement.style.display = 'none';
+          field.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        } else {
+          errorElement.style.display = 'block';
+          field.style.borderColor = '#f87171';
+        }
+        return isValid;
+      }
+
+      function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      function validateName(name) {
+        return name.trim().length >= 2;
+      }
+
+      function validateSubject(subject) {
+        return subject.trim().length >= 3;
+      }
+
+      function validateMessage(message) {
+        return message.trim().length >= 10;
+      }
+
+      // Real-time validation
+      document.getElementById('name').addEventListener('blur', function() {
+        validateField(this, document.getElementById('nameError'), validateName);
+      });
+
+      document.getElementById('email').addEventListener('blur', function() {
+        validateField(this, document.getElementById('emailError'), validateEmail);
+      });
+
+      document.getElementById('subject').addEventListener('blur', function() {
+        validateField(this, document.getElementById('subjectError'), validateSubject);
+      });
+
+      document.getElementById('message').addEventListener('blur', function() {
+        validateField(this, document.getElementById('messageError'), validateMessage);
+      });
+
+      // Form submission
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Hide previous success message
+        successMessage.style.display = 'none';
+
+        // Get form fields
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const subject = document.getElementById('subject');
+        const message = document.getElementById('message');
+
+        // Validate all fields
+        const isNameValid = validateField(name, document.getElementById('nameError'), validateName);
+        const isEmailValid = validateField(email, document.getElementById('emailError'), validateEmail);
+        const isSubjectValid = validateField(subject, document.getElementById('subjectError'), validateSubject);
+        const isMessageValid = validateField(message, document.getElementById('messageError'), validateMessage);
+
+        if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
+          // Show loading state
+          submitBtn.innerHTML = '<span class="loading"></span>Sending...';
+          submitBtn.disabled = true;
+
+          // Simulate form submission (replace with your actual form handling)
+          setTimeout(() => {
+            // Reset button
+            submitBtn.innerHTML = 'Send Message';
+            submitBtn.disabled = false;
+
+            // Show success message
+            successMessage.style.display = 'block';
+
+            // Reset form
+            form.reset();
+
+            // Here you would typically send the form data to your server
+            console.log('Form data:', {
+              name: name.value,
+              email: email.value,
+              subject: subject.value,
+              message: message.value
+            });
+          }, 2000);
+        }
+      });
+
+      // Add smooth hover effects
+      const inputs = document.querySelectorAll('.form-input, .form-textarea');
+      inputs.forEach(input => {
+        input.addEventListener('mouseenter', function() {
+          if (this !== document.activeElement) {
+            this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          }
+        });
+
+        input.addEventListener('mouseleave', function() {
+          if (this !== document.activeElement) {
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+          }
+        });
+      });
+    });
+
     
   </script>
 </body>

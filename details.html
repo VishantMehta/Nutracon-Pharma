@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Luxbone | Product Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+   /* Font and Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: #fefef9;
+  color: #111;
+}
+
+/* Top Header */
+.top-header {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.top-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info {
+  display: flex;
+  gap: 30px;
+}
+
+.contact-info span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-info i {
+  font-size: 12px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.social-links i {
+  font-size: 14px;
+}
+
+
+/* Navbar Base */
+header {
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px 5%;
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1001;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1c1c1c;
+  line-height: 1;
+  position: relative;
+  z-index: 1002;
+  text-decoration: none;
+}
+
+.logo.gradient-text {
+  background: linear-gradient(90deg, #7b5dfd, #f6416c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Nav Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  white-space: nowrap;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #1c1c1c;
+  font-size: 16px;
+  transition: color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.nav-links li a:hover {
+  color: #4caf50;
+  transform: scale(1.1);
+}
+
+
+/* Hamburger Icon */
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 5px;
+  display: none;
+  position: relative;
+  z-index: 1002;
+}
+
+.hamburger i {
+  font-size: 22px;
+  color: #1c1c1c;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .top-header-content {
+    padding: 0 3%;
+  }
+
+  .contact-info {
+    gap: 20px;
+  }
+
+  .contact-info span:first-child {
+    display: none; /* Hide phone number on mobile */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .logo {
+    display: block;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    display: none;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 24px 0 0 32px;
+      color: #111;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link i {
+      margin-right: 8px;
+      font-size: 1.2em;
+    }
+    .main-flex {
+      display: flex;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      align-items: flex-start;
+    }
+    .img-card {
+      background: #f5f4f4;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(12, 12, 12, 0);
+      padding: 48px 32px;
+      flex: 1.1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+      max-width: 520px;
+    }
+    .img-card img {
+      max-width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+    }
+    .right-content {
+      flex: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .category-badge {
+      background: linear-gradient(90deg, #292928 0%, #070707 100%);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 22px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      width: fit-content;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px #ffb34722;
+    }
+    .product-title {
+      font-size: 3rem;
+      font-weight: 1000;
+      color: #000000;
+      margin: 0 0 8px 0;
+      letter-spacing: 1px;
+    }
+    .product-desc {
+      font-size: 1.15rem;
+      color: #000000;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .features-box {
+      background: linear-gradient(90deg, #fffbe6 0%, #fff7cc 100%);
+      border-radius: 18px;
+      padding: 28px 32px;
+      margin-top: 8px;
+      box-shadow: 0 2px 16px #00000011;
+    }
+    .features-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #153a5b;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .features-title i {
+      color: #2ecc40;
+      font-size: 1em;
+    }
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .features-list li {
+      font-size: 1.08rem;
+      color: #333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .features-list li i {
+      color: #2ecc40;
+      font-size: 0.4em;
+      transition: color 0.2s;
+    }
+    .features-list li:hover {
+      color: #ff9800;
+    }
+    .features-list li:hover i {
+      color: #ff9800;
+    }
+    /* Responsive */
+   /* Fix main product section on tablets and phones */
+@media (max-width: 768px) {
+  .main-flex {
+    flex-direction: column;
+    padding: 0 16px;
+  }
+
+  .img-card {
+    padding: 24px 16px;
+    min-height: 240px;
+    margin-left: 8rem;
+  }
+
+  .category-badge {
+      margin-left: 6rem;
+      font-size: 1rem;
+  }
+  .product-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .product-desc {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .features-box {
+    padding: 20px;
+  }
+
+  .features-title {
+    font-size: 1.2rem;
+    justify-content: center;
+  }
+
+  .features-list {
+    padding-left: 16px;
+  }
+}
+    .details-bottom {
+      display: flex;
+      gap: 42px;
+      max-width: 1300px;
+      margin: 40px auto 0 auto;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: linear-gradient(90deg, #fffbe6 0%, #fff7cc 100%);
+      border-radius: 20px;
+      box-shadow: 0 4px 32px 0 rgba(80, 78, 78, 0.13);
+      padding: 36px 32px 28px 32px;
+      min-width: 320px;
+      max-width: 480px;
+      flex: 1 1 340px;
+      margin-bottom: 24px;
+      color: #000;
+      transition: 
+        box-shadow 0.3s, 
+        transform 0.3s, 
+        background 0.3s, 
+        color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      box-shadow: 0 8px 48px 0 #fff3, 0 0 0 4px #fff;
+      transform: translateY(-8px) scale(1.03) rotate(-1deg);
+      background: linear-gradient(90deg, #fffbe6 0%, #fff7cc 100%);
+      color: #000;
+      z-index: 2;
+    }
+    .bone-solution {
+      margin-left: 32px;
+    }
+    .bone-solution h2,
+    .indications h2,
+    .composition h2 {
+      font-size: 2rem;
+      font-weight: 800;
+       color: #153a5b;
+             margin-bottom: 12px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    .card:hover h2 {
+      color: #000;
+    }
+    .bone-solution h3 {
+      font-size: 1.2rem;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      color: #000;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .bone-solution ul,
+    .composition p {
+      color: #000;
+      font-size: 1rem;
+    }
+    .bone-solution ul li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 5px;
+      transition: color 0.3s;
+    }
+    .bone-solution ul li::before {
+      /* content: "•"; */
+      color: #fff;
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+      transition: color 0.3s;
+    }
+    .bone-solution ul li:hover,
+    .bone-solution ul li:hover::before {
+      color: #ff9800;
+    }
+    .indications ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .indications li {
+      font-size: 1.08rem;
+      color: #000;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    .indications li i {
+      color: green;
+      font-size: 1em;
+      margin-top: 5px;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .indications li:hover {
+      color: #ff9800;
+      transform: translateX(8px) scale(1.05);
+    }
+    .indications li:hover i {
+     color: #ff9800;
+      transform: scale(1.3) rotate(-10deg);
+    }
+    .composition p {
+      font-size: 1rem;
+      color: #000;
+      margin: 0;
+      transition: color 0.3s;
+    }
+    .card:hover .composition p {
+      color: #ff9800;;
+    }
+    .contact-btn-row {
+      display: flex;
+      justify-content: center;
+      margin: 32px 0 48px 0;
+    }
+    .contact-btn {
+      background: linear-gradient(90deg, #fffbe6 0%, #fff7cc 100%);
+      color: #111;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 18px 48px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px #fff3;
+      transition: 
+        background 0.2s, 
+        color 0.2s, 
+        transform 0.2s, 
+        box-shadow 0.2s;
+      border: none;
+      outline: none;
+      letter-spacing: 0.5px;
+    }
+    .contact-btn:hover {
+      background:#ff9800;;
+      color: #000;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 24px #fff3;
+      border: 2px solid #fff;
+    }
+   @media (max-width: 900px) {
+  .details-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 16px;
+    gap: 44px;
+  }
+
+  .card {
+    max-width: 100%;
+    width: 100%;
+    padding: 28px 20px;
+    margin: 0 auto;
+  }
+
+  .card h2 {
+    font-size: 1.6rem;
+  }
+
+  .composition p,
+  .bone-solution ul li,
+  .indications li {
+    font-size: 1rem;
+    list-style: none;
+  }
+
+  .bone-solution {
+    margin-left: 0;
+    padding-left: 1rem;
+  }
+
+  .indications li {
+    align-items: flex-start;
+  }
+
+  .contact-btn-row {
+    padding: 0 16px;
+    text-align: center;
+  }
+
+  .contact-btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+    padding: 16px;
+  }
+}
+
+
+
+
+    
+/* footer */
+
+
+
+/* Footer styles */
+.farhanpharma-footer {
+  background: linear-gradient(to right, #0c0c0c, #1e1e1e);
+  color: #e4e4e4;
+  padding: 50px 20px 20px;
+  font-family: 'Manrope', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-about h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+}
+
+.footer-about h2 span {
+  color: whitesmoke;
+}
+
+.footer-about p {
+  margin: 15px 0;
+  line-height: 1.6;
+  color: #bbb;
+}
+
+.footer-address i {
+  color: whitesmoke;
+  margin-right: 8px;
+}
+
+.footer-links h3,
+.footer-social h3 {
+  color: white;
+  margin-bottom: 12px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: burlywood;
+  translate: scale(1.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-social .social-icons a {
+  margin-right: 15px;
+  color: #ccc;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-social .social-icons a:hover {
+  color: burlywood;
+  translate: scale(1.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-social .dev-credit {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-social .dev-credit span {
+  color: whitesmoke;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid #333;
+  font-size: 14px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-about,
+  .footer-links,
+  .footer-social {
+    margin-bottom: 30px;
+  }
+
+  .footer-social .social-icons a {
+    margin: 0 10px;
+  }
+}
+
+/* Sexy Black Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(145deg, #444, #666);
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(145deg, #666, #888);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #000;
+}
+
+  </style>
+</head>
+<body>
+
+
+    
+  <!-- 🔥 EXACT SAME TOP HEADER FROM HOME -->
+  <div class="top-header">
+    <div class="top-header-content">
+      <div class="contact-info">
+        <span><i class="fas fa-phone"></i> +1 (555) 123-4567</span>
+        <span><i class="fas fa-envelope"></i> info@nutraconpharma.com</span>
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔥 EXACT SAME NAVBAR FROM HOME -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo" data-translate="logo">Nutracon Pharma</a>
+
+
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-translate="nav-home">Home</a></li>
+        <li><a href="about.html" data-translate="nav-about">About&nbsp;Us</a></li>
+        <li><a href="product.html" class="active" data-translate="nav-products">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Events</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+
+
+
+  <a href="product.html" class="back-link"><i class="fa fa-arrow-left"></i>Back to Products</a>
+ <div class="main-flex">
+  <div class="img-card">
+    <img id="productImage" src="luxbone.png" alt="Luxbone Product Box" />
+  </div>
+  <div class="right-content">
+    <div id="productCategory" class="category-badge">
+      <i class="fa fa-capsules"></i> Bone Health Supplement
+    </div>
+    <div id="productName" class="product-title">Luxbone</div>
+    <div id="productTagline" class="product-desc">
+      A premium, comprehensive formula for building and maintaining strong, healthy bones in adults.
+    </div>
+    <div class="features-box">
+      <div class="features-title">
+        <i class="fa fa-check-circle"></i> Key Features
+      </div>
+      <ul id="productFeatures" class="features-list">
+        <li><i class="fa fa-circle"></i> Complete 7-ingredient bone formula</li>
+        <li><i class="fa fa-circle"></i> Includes active Vitamin D (Calcitriol) &amp; Vitamin K2-7</li>
+        <li><i class="fa fa-circle"></i> Contains active B-Vitamins for nerve support</li>
+        <li><i class="fa fa-circle"></i> Ensures optimal calcium deposition into bones</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="details-bottom">
+  <div class="bone-solution card">
+    <h2>The Complete Bone Solution</h2>
+    <p id="productDescription">
+      Luxbone is more than just calcium. It is a scientifically formulated product that provides all the key nutrients required for the entire bone-building cycle, from absorption to mineralization.
+    </p>
+    <h3>Helpful Tips:</h3>
+    <ul id="productTips">
+      <li>Take as directed by your physician.</li>
+      <li>A superior choice for comprehensive, long-term bone health.</li>
+      <li>Consistent daily intake is key.</li>
+    </ul>
+  </div>
+
+  <div class="indications card">
+    <h2>Indications</h2>
+    <ul id="productIndications">
+      <li><i class="fa fa-check-circle"></i> Osteoporosis &amp; Osteopenia</li>
+      <li><i class="fa fa-check-circle"></i> General bone health and density maintenance</li>
+      <li><i class="fa fa-check-circle"></i> Support during fracture healing</li>
+      <li><i class="fa fa-check-circle"></i> As an adjuvant for bone health in chronic conditions</li>
+    </ul>
+  </div>
+
+  <div class="composition card">
+    <h2>Composition</h2>
+    <p id="productComposition">
+      Calcitriol (0.25mcg), Calcium Carbonate (1250mg), Elemental Magnesium (50mg), Elemental Zinc (7.5mg), L-methylfolate (800mcg), Methylcobalamin (1500mcg), and Vitamin K2-7 (45mcg).
+    </p>
+  </div>
+</div>
+
+  <div class="contact-btn-row">
+    <a href="contact.html" class="contact-btn">Contact for More Information</a>
+  </div>
+
+
+
+  
+  <!-- Footer (copy from product.html) -->
+  <footer class="farhanpharma-footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <h2>Nutra <span>Pharma</span></h2>
+        <p>Leading pharmaceutical company committed to delivering innovation, care, and affordability for a healthier tomorrow.</p>
+        <div class="footer-address">
+          <p><i class="fa-solid fa-location-dot"></i> NUTRA PHARMACEUTICAL PVT LTD<br>
+          H.N. B-2405 FIRST FLOOR,<br>DUBAI</p>
+          <p><i class="fa-solid fa-envelope"></i> info@nutrapharma.com</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Values</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p class="dev-credit">Developer Credit<br><span>Tabish and Fahad </span></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 NutraPharma. All rights reserved.
+    </div>
+  </footer>
+
+    <script src="data.js"></script>
+
+  <script>
+
+    // for hamburger toggling 
+function toggleMenu() {
+  const nav = document.getElementById("navLinks");
+  const icon = document.getElementById("hamburger").querySelector("i");
+
+  nav.classList.toggle("active");
+
+  if (nav.classList.contains("active")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-times");
+  } else {
+    icon.classList.remove("fa-times");
+    icon.classList.add("fa-bars");
+  }
+}
+
+
+    const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const product = products[id];
+
+if (product) {
+  document.getElementById("productImage").src = product.images[0];
+  document.getElementById("productImage").alt = product.name;
+
+  document.getElementById("productCategory").innerHTML = `<i class="fa fa-capsules"></i> ${product.category}`;
+  document.getElementById("productName").textContent = product.name;
+  document.getElementById("productTagline").textContent = product.tagline;
+  document.getElementById("productDescription").textContent = product.description;
+  document.getElementById("productComposition").textContent = product.composition;
+
+  const featureList = document.getElementById("productFeatures");
+  featureList.innerHTML = "";
+  product.features.forEach(f => {
+    const li = document.createElement("li");
+    li.innerHTML = `<i class="fa fa-circle"></i> ${f}`;
+    featureList.appendChild(li);
+  });
+
+  const tipList = document.getElementById("productTips");
+  tipList.innerHTML = "";
+  product.tips.forEach(t => {
+    const li = document.createElement("li");
+    li.textContent = t;
+    tipList.appendChild(li);
+  });
+
+  const indicationList = document.getElementById("productIndications");
+  indicationList.innerHTML = "";
+  product.indications.forEach(i => {
+    const li = document.createElement("li");
+    li.innerHTML = `<i class="fa fa-check-circle" style="color:green; margin-right:6px;"></i> ${i}`;
+    indicationList.appendChild(li);
+  });
+} else {
+  alert("Product not found.");
+}
+
+  </script>
+  
+</body>
+</html>
