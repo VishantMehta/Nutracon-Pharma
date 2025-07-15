@@ -495,16 +495,35 @@ header {
     }
 
         /* Responsive design */
-        @media (max-width: 768px) {
-           .container {
-        margin: 80px 20px 60px 20px;
-        padding: 30px 25px;
-      }
+@media (max-width: 768px) {
+  .container {
+    margin: 60px 15px;
+    padding: 25px 20px;
+    width: 95%;
+    max-width: 100%;
+    border-radius: 12px;
+  }
 
-      .form-title {
-        font-size: 1.8rem;
-      }
-        }
+  .form-title {
+    font-size: 1.6rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 15px;
+    padding: 12px 15px;
+  }
+
+  .form-button {
+    font-size: 15px;
+    padding: 14px;
+  }
+}
+
 
         /* Loading animation */
         .loading {

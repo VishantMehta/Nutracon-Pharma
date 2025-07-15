@@ -2218,6 +2218,11 @@ header {
             border-radius: 8px;
         }
 
+        .discover-more a{
+            text-decoration: none;
+            color: inherit;
+        }
+
         .discover-more:hover {
             color: var(--text-primary);
             background: black;
