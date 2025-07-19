@@ -65,64 +65,77 @@
 </section>
 
 
+
+<!-- Product Filter Section -->
+<section class="product-filter">
+  <div class="filter-container">
+    <input type="text" id="productSearch" placeholder="Search products..." onkeyup="filterProducts()" />
+    <select id="categoryFilter" onchange="filterProducts()">
+      <option value="all">All Categories</option>
+      <option value="headache">Headache</option>
+      <option value="cold">Cold</option>
+      <option value="pain">Pain Relief</option>
+      <option value="immunity">Immunity</option>
+      <option value="bone">Bone Health</option>
+    </select>
+  </div>
+</section>
+
 <!-- Product Cards Grid -->
 <section class="product-grid" id="product-grid">
-  <div class="product-card">
+  <div class="product-card" data-category="immunity">
     <img src="../assets/product1.png" alt="Fladecort 6">
     <h3>Fladecort 6</h3>
     <p>A potent glucocorticoid used to treat a wide range of inflammatory and autoimmune conditions.</p>
-    <a href="details.html?id=fladecort-6" class="learn-btn">Learn More</a>
+    <a href="details.html?id=fladecort-6" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="cold">
     <img src="../assets/product2.png" alt="Linzocast 600">
     <h3>Linzocast 600</h3>
-    <p>Used for treating serious infections caused by multi-drug resistant bacteria.</p>
-    <a href="details.html?id=linzocast-600" class="learn-btn">Learn More</a>
+    <p>A last-resort antibiotic for treating serious infections caused by multi-drug resistant bacteria.</p>
+    <a href="details.html?id=linzocast-600" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="immunity">
     <img src="../assets/product3.png" alt="Livofolate">
     <h3>Livofolate</h3>
-    <p>A formula with B-vitamins and Omega-3 to support nerve, brain, and heart health.</p>
-    <a href="details.html?id=livofolate" class="learn-btn">Learn More</a>
+    <p>A comprehensive formula with active B-vitamins and Omega-3 to support nerve, brain, and heart health.</p>
+    <a href="details.html?id=livofolate" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="iron">
     <img src="../assets/product4.png" alt="Livozorb XT Syp">
     <h3>Livozorb XT Syp</h3>
-    <p>An iron supplement syrup ideal for treating iron deficiency anemia.</p>
-    <a href="details.html?id=livozorb-xt" class="learn-btn">Learn More</a>
+    <p>A palatable iron supplement syrup, ideal for children and adults to effectively treat iron deficiency anemia.</p>
+    <a href="details.html?id=livozorb-xt" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="bone">
     <img src="../assets/product2.png" alt="Nutrabone">
     <h3>Nutrabone</h3>
     <p>A calcium and vitamin D3 supplement for bone strength and density support.</p>
-    <a href="details.html?id=nutrabone" class="learn-btn">Learn More</a>
+    <a href="details.html?id=nutrabone" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="bone">
     <img src="../assets/product1.png" alt="Luxbone">
     <h3>Luxbone</h3>
     <p>Advanced bone health supplement enriched with Vitamin K2-7 and Calcitriol.</p>
-    <a href="details.html?id=luxbone" class="learn-btn">Learn More</a>
+    <a href="details.html?id=luxbone" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="bone">
     <img src="../assets/product4.png" alt="Calfolic D3">
     <h3>Calfolic D3</h3>
     <p>Supports bone and nerve health with Methylcobalamin, Calcium & Vitamin D3.</p>
-    <a href="details.html?id=calfolic-d3" class="learn-btn">Learn More</a>
+    <a href="details.html?id=calfolic-d3" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
-
-  <div class="product-card">
+  <div class="product-card" data-category="immunity">
     <img src="../assets/product3.png" alt="Neurovit Plus">
     <h3>Neurovit Plus</h3>
     <p>Neurological support supplement with B-complex, L-methylfolate and Omega-3.</p>
-    <a href="details.html?id=neurovit-plus" class="learn-btn">Learn More</a>
+    <a href="details.html?id=neurovit-plus" class="learn-btn">Learn More <span>&rarr;</span></a>
   </div>
 </section>
+
+
+
+
 
 <!-- Product Categories -->
 <section class="product-categories">
@@ -135,6 +148,8 @@
     <div class="category-card"><i class="fas fa-bone"></i> Bone Health</div>
   </div>
 </section>
+
+
 
 <!-- Footer -->
  <footer class="farhanpharma-footer">
@@ -179,24 +194,9 @@
 
 
 
-  <script>
-    
-// for hamburger toggling 
-function toggleMenu() {
-  const nav = document.getElementById("navLinks");
-  const icon = document.getElementById("hamburger").querySelector("i");
+  <script src="../js/product.js"></script>
+  
 
-  nav.classList.toggle("active");
-
-  if (nav.classList.contains("active")) {
-    icon.classList.remove("fa-bars");
-    icon.classList.add("fa-times");
-  } else {
-    icon.classList.remove("fa-times");
-    icon.classList.add("fa-bars");
-  }
-}
-    
-  </script>
+  <!-- </script> -->
 </body>
 </html>
