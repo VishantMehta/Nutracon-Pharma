@@ -141,13 +141,21 @@
   </div>
 
   <!-- Find Us Section -->
-  <div class="contact-map-box">
-    <h2>Find <span class="highlight">Us</span></h2>
-    <p>Interactive Map Integration Coming Soon</p>
-    <div class="map-icon">
-      <i class="fas fa-map-marker-alt"></i>
-    </div>
+ <div class="contact-map-box">
+  <h2>Find <span class="highlight">Us</span></h2>
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115674.84950463094!2d55.02831719726561!3d25.039535700000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6d079c17bac3%3A0xc9f28cc65c8bb6d3!2sNoor%20Apartment!5e0!3m2!1sen!2sin!4v1753123774027!5m2!1sen!2sin" 
+      width="100%" 
+      height="400" 
+      style="border:0; border-radius: 10px;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
+</div>
+
 </section>
 
 
@@ -195,97 +203,8 @@
 
 
 
-<script>
-    
-// for hamburger toggling 
-function toggleMenu() {
-  const nav = document.getElementById("navLinks");
-  const icon = document.getElementById("hamburger").querySelector("i");
-
-  nav.classList.toggle("active");
-
-  if (nav.classList.contains("active")) {
-    icon.classList.remove("fa-bars");
-    icon.classList.add("fa-times");
-  } else {
-    icon.classList.remove("fa-times");
-    icon.classList.add("fa-bars");
-  }
-}
-
-  const form = document.getElementById("contactForm");
-
-  const fields = {
-    firstName: { required: true, name: "First Name" },
-    lastName: { required: true, name: "Last Name" },
-    email: {
-      required: true,
-      name: "Email",
-      validate: (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || "Enter a valid email",
-    },
-    subject: {
-      required: true,
-      name: "Subject",
-      validate: (value) => value !== "" || "Please select a subject",
-    },
-    message: { required: true, name: "Message" },
-  };
-
-  Object.keys(fields).forEach((id) => {
-    const input = document.getElementById(id);
-    const errorEl = document.getElementById(`${id}Error`);
-    const rules = fields[id];
-
-    input.addEventListener("blur", () => {
-      const value = input.value.trim();
-      if (rules.required && !value) {
-        errorEl.textContent = `${rules.name} is required`;
-      } else if (rules.validate && typeof rules.validate === "function") {
-        const validation = rules.validate(value);
-        errorEl.textContent = validation === true ? "" : validation;
-      } else {
-        errorEl.textContent = "";
-      }
-    });
-
-    input.addEventListener("input", () => {
-      errorEl.textContent = "";
-    });
-  });
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let valid = true;
-
-    Object.keys(fields).forEach((id) => {
-      const input = document.getElementById(id);
-      const errorEl = document.getElementById(`${id}Error`);
-      const value = input.value.trim();
-      const rules = fields[id];
-
-      if (rules.required && !value) {
-        errorEl.textContent = `${rules.name} is required`;
-        valid = false;
-      } else if (rules.validate) {
-        const validation = rules.validate(value);
-        if (validation !== true) {
-          errorEl.textContent = validation;
-          valid = false;
-        } else {
-          errorEl.textContent = "";
-        }
-      } else {
-        errorEl.textContent = "";
-      }
-    });
-
-    if (valid) {
-      alert("Form submitted successfully!");
-      form.reset();
-    }
-  });
-    
+<script src="../js/contact.js">
+ 
   </script>
 </body>
 <<<<<<< HEAD
