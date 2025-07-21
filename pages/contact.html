@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/contact.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
 
@@ -50,82 +52,104 @@
     </div>
   </header>
 
- <!-- contact section  -->
-<section class="contact-hero" id="contact-section">
-  <div class="contact-hero-content">
-    <h1>Contact Us</h1>
-    <p>Get in touch with our team for inquiries, partnerships, or support.</p>
-    <a href="#contact-form" class="cta-button">Send a Message</a>
+  
+<!-- 🧊 CONTACT SECTION -->
+<section class="contact-main">
+  <h1 class="contact-heading">Contact <span class="highlight">Us</span></h1>
+  <p class="contact-subtext">Get in touch with our team for inquiries, partnerships, or support.</p>
+
+  <div class="contact-container">
+    <!-- Contact Form (Left) -->
+    <div class="contact-left">
+      <h2><i class="fas fa-comment-dots"></i> Send us a <span class="highlight">Message</span></h2>
+      <form class="contact-form" id="contactForm" novalidate>
+  <div class="form-row">
+    <div class="input-group">
+      <input type="text" id="firstName" placeholder="First Name" />
+      <small class="error-text" id="firstNameError"></small>
+    </div>
+    <div class="input-group">
+      <input type="text" id="lastName" placeholder="Last Name" />
+      <small class="error-text" id="lastNameError"></small>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <input type="email" id="email" placeholder="Email Address" />
+    <small class="error-text" id="emailError"></small>
+  </div>
+
+  <div class="input-group">
+    <select id="subject">
+      <option value="">Subject</option>
+      <option>General Inquiry</option>
+      <option>Partnership</option>
+      <option>Support</option>
+    </select>
+    <small class="error-text" id="subjectError"></small>
+  </div>
+
+  <div class="input-group">
+    <textarea id="message" placeholder="Message"></textarea>
+    <small class="error-text" id="messageError"></small>
+  </div>
+
+  <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+</form>
+
+    </div>
+
+    <!-- Info Cards (Right) -->
+    <div class="contact-right">
+      <div class="contact-card">
+        <div class="card-icon" style="background: #00bfff;">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div>
+          <h3>Address</h3>
+          <p>
+            NUTRACON PHARMACEUTICAL PVT LTD<br />
+            H.N. B-2405 FIRST FLOOR, DUBAI - 110094
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="card-icon" style="background: #b833ff;">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div>
+          <h3>Email</h3>
+          <p>info@nutraconpharma.com</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="card-icon" style="background: #ff5e00;">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div>
+          <h3>Business Hours</h3>
+          <p>
+            Monday - Friday: 9:00 AM – 6:00 PM<br />
+            Saturday: 9:00 AM – 2:00 PM<br />
+            Sunday: Closed
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Find Us Section -->
+  <div class="contact-map-box">
+    <h2>Find <span class="highlight">Us</span></h2>
+    <p>Interactive Map Integration Coming Soon</p>
+    <div class="map-icon">
+      <i class="fas fa-map-marker-alt"></i>
+    </div>
   </div>
 </section>
 
-
-
-<!-- main form -->
- <!-- Contact Form -->
-  <div id="contact-form" class="container">
-    <div class="form-header">
-      <h1 class="form-title">Contact Us</h1>
-      <p class="form-subtitle">Send us a message!</p>
-    </div>
-
-    <form id="contactForm" novalidate>
-      <div class="form-group">
-        <input 
-          type="text" 
-          id="name" 
-          name="name" 
-          class="form-input" 
-          placeholder="Your Name"
-          required
-        >
-        <div class="error-message" id="nameError">Please enter your name</div>
-      </div>
-
-      <div class="form-group">
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          class="form-input" 
-          placeholder="Your Email"
-          required
-        >
-        <div class="error-message" id="emailError">Please enter a valid email address</div>
-      </div>
-
-      <div class="form-group">
-        <input 
-          type="text" 
-          id="subject" 
-          name="subject" 
-          class="form-input" 
-          placeholder="Subject"
-          required
-        >
-        <div class="error-message" id="subjectError">Please enter a subject</div>
-      </div>
-
-      <div class="form-group">
-        <textarea 
-          id="message" 
-          name="message" 
-          class="form-textarea" 
-          placeholder="Your Message"
-          required
-        ></textarea>
-        <div class="error-message" id="messageError">Please enter your message</div>
-      </div>
-
-      <button type="submit" class="form-button" id="submitBtn">
-        Send Message
-      </button>
-
-      <div class="success-message" id="successMessage">
-        Thank you! Your message has been sent successfully.
-      </div>
-    </form>
-  </div>
 
 
 <!-- Footer -->
@@ -171,7 +195,7 @@
 
 
 
-  <script>
+<script>
     
 // for hamburger toggling 
 function toggleMenu() {
@@ -189,125 +213,78 @@ function toggleMenu() {
   }
 }
 
+  const form = document.getElementById("contactForm");
 
-// form js starts here 
-  // Form validation and submission
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('contactForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const successMessage = document.getElementById('successMessage');
+  const fields = {
+    firstName: { required: true, name: "First Name" },
+    lastName: { required: true, name: "Last Name" },
+    email: {
+      required: true,
+      name: "Email",
+      validate: (value) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || "Enter a valid email",
+    },
+    subject: {
+      required: true,
+      name: "Subject",
+      validate: (value) => value !== "" || "Please select a subject",
+    },
+    message: { required: true, name: "Message" },
+  };
 
-      // Form validation
-      function validateField(field, errorElement, validationFn) {
-        const isValid = validationFn(field.value);
-        if (isValid) {
-          errorElement.style.display = 'none';
-          field.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        } else {
-          errorElement.style.display = 'block';
-          field.style.borderColor = '#f87171';
-        }
-        return isValid;
+  Object.keys(fields).forEach((id) => {
+    const input = document.getElementById(id);
+    const errorEl = document.getElementById(`${id}Error`);
+    const rules = fields[id];
+
+    input.addEventListener("blur", () => {
+      const value = input.value.trim();
+      if (rules.required && !value) {
+        errorEl.textContent = `${rules.name} is required`;
+      } else if (rules.validate && typeof rules.validate === "function") {
+        const validation = rules.validate(value);
+        errorEl.textContent = validation === true ? "" : validation;
+      } else {
+        errorEl.textContent = "";
       }
-
-      function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-      }
-
-      function validateName(name) {
-        return name.trim().length >= 2;
-      }
-
-      function validateSubject(subject) {
-        return subject.trim().length >= 3;
-      }
-
-      function validateMessage(message) {
-        return message.trim().length >= 10;
-      }
-
-      // Real-time validation
-      document.getElementById('name').addEventListener('blur', function() {
-        validateField(this, document.getElementById('nameError'), validateName);
-      });
-
-      document.getElementById('email').addEventListener('blur', function() {
-        validateField(this, document.getElementById('emailError'), validateEmail);
-      });
-
-      document.getElementById('subject').addEventListener('blur', function() {
-        validateField(this, document.getElementById('subjectError'), validateSubject);
-      });
-
-      document.getElementById('message').addEventListener('blur', function() {
-        validateField(this, document.getElementById('messageError'), validateMessage);
-      });
-
-      // Form submission
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Hide previous success message
-        successMessage.style.display = 'none';
-
-        // Get form fields
-        const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        const subject = document.getElementById('subject');
-        const message = document.getElementById('message');
-
-        // Validate all fields
-        const isNameValid = validateField(name, document.getElementById('nameError'), validateName);
-        const isEmailValid = validateField(email, document.getElementById('emailError'), validateEmail);
-        const isSubjectValid = validateField(subject, document.getElementById('subjectError'), validateSubject);
-        const isMessageValid = validateField(message, document.getElementById('messageError'), validateMessage);
-
-        if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
-          // Show loading state
-          submitBtn.innerHTML = '<span class="loading"></span>Sending...';
-          submitBtn.disabled = true;
-
-          // Simulate form submission (replace with your actual form handling)
-          setTimeout(() => {
-            // Reset button
-            submitBtn.innerHTML = 'Send Message';
-            submitBtn.disabled = false;
-
-            // Show success message
-            successMessage.style.display = 'block';
-
-            // Reset form
-            form.reset();
-
-            // Here you would typically send the form data to your server
-            console.log('Form data:', {
-              name: name.value,
-              email: email.value,
-              subject: subject.value,
-              message: message.value
-            });
-          }, 2000);
-        }
-      });
-
-      // Add smooth hover effects
-      const inputs = document.querySelectorAll('.form-input, .form-textarea');
-      inputs.forEach(input => {
-        input.addEventListener('mouseenter', function() {
-          if (this !== document.activeElement) {
-            this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-          }
-        });
-
-        input.addEventListener('mouseleave', function() {
-          if (this !== document.activeElement) {
-            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-          }
-        });
-      });
     });
 
+    input.addEventListener("input", () => {
+      errorEl.textContent = "";
+    });
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let valid = true;
+
+    Object.keys(fields).forEach((id) => {
+      const input = document.getElementById(id);
+      const errorEl = document.getElementById(`${id}Error`);
+      const value = input.value.trim();
+      const rules = fields[id];
+
+      if (rules.required && !value) {
+        errorEl.textContent = `${rules.name} is required`;
+        valid = false;
+      } else if (rules.validate) {
+        const validation = rules.validate(value);
+        if (validation !== true) {
+          errorEl.textContent = validation;
+          valid = false;
+        } else {
+          errorEl.textContent = "";
+        }
+      } else {
+        errorEl.textContent = "";
+      }
+    });
+
+    if (valid) {
+      alert("Form submitted successfully!");
+      form.reset();
+    }
+  });
     
   </script>
 </body>

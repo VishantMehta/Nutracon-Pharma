@@ -1690,12 +1690,19 @@ header {
   margin: 25px 0;
   font-size: 16px;
   line-height: 1.6;
+
 }
+
 
 .about-buttons-custom {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  
+}
+
+.about-buttons-custom a {
+  text-decoration: none;
 }
 
 .btn-custom-primary {
