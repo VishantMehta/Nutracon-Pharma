@@ -80,3 +80,18 @@ function toggleMenu() {
     card.style.transform = 'translateY(30px)';
     observer.observe(card);
   });
+
+
+
+  // Animate badge on scroll into view
+  const badge = document.querySelector(".cofounder-content .badge");
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        badge.classList.add("animate-badge");
+      }
+    });
+  });
+
+  obs.observe(badge);
