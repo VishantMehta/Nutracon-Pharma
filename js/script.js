@@ -1,11 +1,15 @@
 
 // preloader
+window.addEventListener("load", () => {
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      preloader.style.transition = "opacity 0.5s ease";
+      setTimeout(() => preloader.style.display = "none", 500);
+    }, 2500); // Loader stays visible for 2.5s
+  });
+ 
 
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.querySelector('.preloader').classList.add('hidden');
-    }, 1000);
-});
 
 
 // for hamburger toggling 

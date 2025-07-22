@@ -1,4 +1,13 @@
-   
+// preloader
+window.addEventListener("load", () => {
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      preloader.style.transition = "opacity 0.5s ease";
+      setTimeout(() => preloader.style.display = "none", 500);
+    }, 2500); // Loader stays visible for 2.5s
+  });
+    
 // for hamburger toggling 
 function toggleMenu() {
   const nav = document.getElementById("navLinks");
