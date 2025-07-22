@@ -9,7 +9,126 @@ window.addEventListener("load", () => {
     }, 1800); // Loader stays visible for 2.5s
   });
  
+// back to top button functionality
+ // Show/hide button on scroll
+  window.onscroll = function () {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
 
+  // Scroll to top on click
+  document.getElementById("backToTop").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+// chatbot functionality
+
+let chatContext = ""; // To keep track of current topic
+
+const intents = [
+  {
+    tags: ["hi", "hello", "hey", "good morning", "good evening"],
+    response: "Hi there! 👋 What can I do for you today?",
+  },
+  {
+    tags: ["product", "products", "medicine", "medicines"],
+    response: "We offer a wide variety of pharmaceutical products. Do you want to know about best sellers or product categories?",
+    context: "products"
+  },
+  {
+    tags: ["best", "top", "popular", "best seller"],
+    response: "Our best-selling product is 'Neurovit B-Complex'. It's very popular among our customers.",
+    contextTrigger: "products"
+  },
+  {
+    tags: ["category", "categories", "types", "kinds"],
+    response: "We have categories like Pain Relief, Supplements, Skincare, and Multivitamins. Would you like to explore one?",
+    contextTrigger: "products"
+  },
+  {
+    tags: ["contact", "email", "phone", "call"],
+    response: "You can reach us at 📞 +971-123-456 or ✉️ contact@nutraconpharma.com.",
+  },
+  {
+    tags: ["location", "where", "address"],
+    response: "We’re based in England Cluster, Warsan First, Deira Dubai.",
+  },
+  {
+    tags: ["about", "company", "who are you"],
+    response: "We are Nutracon Pharma, a company dedicated to quality healthcare products since 2001.",
+  },
+  {
+    tags: ["bye", "goodbye", "see you"],
+    response: "Goodbye! Feel free to ask if you need anything else. 😊",
+  }
+];
+
+function toggleChatbot() {
+  const box = document.getElementById("chatbot-box");
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+}
+
+function handleKey(e) {
+  if (e.key === "Enter") sendMessage();
+}
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  appendMessage("user", msg);
+  input.value = "";
+  simulateBotTyping();
+
+  setTimeout(() => {
+    const reply = getSmartReply(msg.toLowerCase());
+    appendMessage("bot", reply);
+  }, 800);
+}
+
+function appendMessage(sender, text) {
+  const chat = document.getElementById("chatMessages");
+  const msgDiv = document.createElement("div");
+  msgDiv.className = sender === "user" ? "user-msg" : "bot-msg";
+  msgDiv.innerHTML = text;
+  chat.appendChild(msgDiv);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function simulateBotTyping() {
+  const typingDiv = document.createElement("div");
+  typingDiv.className = "bot-msg typing";
+  typingDiv.id = "typing";
+  typingDiv.innerHTML = "Typing<span>.</span><span>.</span><span>.</span>";
+  document.getElementById("chatMessages").appendChild(typingDiv);
+  setTimeout(() => {
+    typingDiv.remove();
+  }, 800);
+}
+
+function getSmartReply(message) {
+  for (let intent of intents) {
+    for (let tag of intent.tags) {
+      if (message.includes(tag)) {
+        if (intent.context) {
+          chatContext = intent.context;
+        }
+        if (!intent.contextTrigger || intent.contextTrigger === chatContext) {
+          return intent.response;
+        }
+      }
+    }
+  }
+
+  return `
+    I'm not sure I understand that. 🤔<br>
+    You can ask about: <b>Products</b>, <b>Contact</b>, <b>Location</b>, or <b>Company</b>.
+  `;
+}
 
 
 // for hamburger toggling 

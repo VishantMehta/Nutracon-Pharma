@@ -408,6 +408,36 @@
     </section>
 
 
+
+
+
+    <!-- Chatbot Icon & Window -->
+<div id="chatbot-icon" onclick="toggleChatbot()">
+  <i class="fas fa-comments"></i>
+</div>
+
+<div id="chatbot-box">
+  <div class="chat-header">
+    <span>Ask NutraBot</span>
+    <button onclick="toggleChatbot()">&times;</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="bot-msg">Hi! 👋 How can I help you today?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your question..." onkeypress="handleKey(event)">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+<!-- Back to Top Button (Circle) -->
+<button id="backToTop" title="Back to Top">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M12 4v16M5 11l7-7 7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
 <!-- footer  -->
 
 <footer class="farhanpharma-footer">
