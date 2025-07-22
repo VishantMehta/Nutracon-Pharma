@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
           preloader.remove(); // ✅ REMOVE instead of display: none
         }, 500);
       }
-    }, 2500);
+    }, 1800);
 });
 
 
