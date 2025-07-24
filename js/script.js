@@ -24,45 +24,143 @@ window.addEventListener("load", () => {
   document.getElementById("backToTop").addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-// chatbot functionality
+
+
+
+  // chatbot functionality
+  // Enhanced chatbot with extensive knowledge base
 
 let chatContext = ""; // To keep track of current topic
 
 const intents = [
+  // Greetings
   {
     tags: ["hi", "hello", "hey", "good morning", "good evening"],
     response: "Hi there! 👋 What can I do for you today?",
   },
+
+  // Product Queries
   {
     tags: ["product", "products", "medicine", "medicines"],
-    response: "We offer a wide variety of pharmaceutical products. Do you want to know about best sellers or product categories?",
+    response: "We offer a wide variety of pharmaceutical products including tablets, syrups, supplements, and more. Are you looking for something specific or want to explore our categories?",
     context: "products"
   },
   {
     tags: ["best", "top", "popular", "best seller"],
-    response: "Our best-selling product is 'Neurovit B-Complex'. It's very popular among our customers.",
+    response: "Our best-selling products include 'Neurovit B-Complex', 'Nutra-D3 60k', and 'Fladecort 6'. These are highly recommended by health professionals.",
     contextTrigger: "products"
   },
   {
     tags: ["category", "categories", "types", "kinds"],
-    response: "We have categories like Pain Relief, Supplements, Skincare, and Multivitamins. Would you like to explore one?",
+    response: "We have products categorized into: Pain Relief, Diabetes Care, Cardiac Care, Immunity Boosters, Skin & Hair Care, Vitamins & Supplements, and General Health. Which category are you interested in?",
     contextTrigger: "products"
   },
   {
+    tags: ["diabetes", "sugar", "blood sugar"],
+    response: "For diabetes care, we recommend our GlucoControl range including GlucoTabs, DiabeTone, and SugarCare Capsules. Would you like detailed info on one of these?",
+    contextTrigger: "products"
+  },
+  {
+    tags: ["cardiac", "heart", "bp", "blood pressure"],
+    response: "Our cardiac care range includes CardioWell, HeartTone, and BPGuard. Let me know if you'd like more information on dosage or usage.",
+    contextTrigger: "products"
+  },
+  {
+    tags: ["vitamin", "supplement", "multivitamin"],
+    response: "We offer Vitamin C, Vitamin D3, Neurovit B-Complex, and DailyMultis. These help boost immunity, energy, and overall wellness.",
+    contextTrigger: "products"
+  },
+  {
+    tags: ["skin", "hair", "beauty"],
+    response: "For skin and hair care, we recommend SkinGlow Capsules, HairVital Tonic, and Herbal Dermo Cream. Want to know their benefits?",
+    contextTrigger: "products"
+  },
+  {
+    tags: ["general health", "wellness", "overall health"],
+    response: "For overall wellness, DailyMultis and NutraMax Forte are great choices. They support daily nutrition and energy.",
+    contextTrigger: "products"
+  },
+
+  // Purchase & Availability
+  {
+    tags: ["buy", "purchase", "order", "available"],
+    response: "You can purchase our products through our website or visit our physical store in Dubai. Do you want the purchase link?",
+  },
+  {
+    tags: ["delivery", "shipping", "home delivery"],
+    response: "Yes, we offer delivery across UAE and selected international locations. Shipping charges may apply based on your location.",
+  },
+  {
+    tags: ["price", "cost", "rate"],
+    response: "Prices vary depending on the product. You can check our full catalog on the website or let me know the product name to get its price.",
+  },
+  {
+    tags: ["bulk order", "wholesale", "distributor"],
+    response: "We do accept bulk and wholesale orders. Please contact our sales team at ✉️ sales@nutraconpharma.com for pricing and partnership options.",
+  },
+
+  // Company Details
+  {
+    tags: ["about", "company", "who are you"],
+    response: "We are Nutracon Pharma, dedicated to health and wellness since 2001. We specialize in nutraceuticals, prescription medicines, and wellness supplements.",
+  },
+  {
+    tags: ["founder", "ceo", "owner"],
+    response: "Our company was founded by professionals passionate about making healthcare accessible and affordable. The CEO, Mr. Shadab Ashraf, has over 20 years of experience in pharmaceuticals.",
+  },
+  {
+    tags: ["certification", "gmp", "iso", "quality"],
+    response: "Yes, our manufacturing facilities are GMP-certified and ISO-compliant, ensuring high-quality standards in all our products.",
+  },
+  {
+    tags: ["mission", "vision", "goal"],
+    response: "Our mission is to promote better living through affordable and effective healthcare solutions. We aim to become a global leader in wellness."
+  },
+  {
+    tags: ["team", "employees", "staff"],
+    response: "Our team comprises pharmacists, scientists, researchers, and customer support specialists who are all dedicated to your well-being."
+  },
+
+  // Customer Support
+  {
     tags: ["contact", "email", "phone", "call"],
-    response: "You can reach us at 📞 +971-123-456 or ✉️ contact@nutraconpharma.com.",
+    response: "You can reach us at 📞 +971-123-456 or ✉️ contact@nutraconpharma.com. Our support is available Mon-Fri, 9am-6pm.",
   },
   {
     tags: ["location", "where", "address"],
-    response: "We’re based in England Cluster, Warsan First, Deira Dubai.",
+    response: "We’re based in England Cluster, Warsan First, Deira Dubai. Here’s our Google Maps link: <a href='https://maps.google.com' target='_blank'>View Location</a>",
   },
   {
-    tags: ["about", "company", "who are you"],
-    response: "We are Nutracon Pharma, a company dedicated to quality healthcare products since 2001.",
+    tags: ["timing", "open", "hours", "working"],
+    response: "We’re open Monday to Friday from 9:00 AM to 6:00 PM and Saturdays from 10:00 AM to 2:00 PM. Closed on Sundays.",
   },
+  {
+    tags: ["holiday", "closed", "off days"],
+    response: "We are closed on Sundays and public holidays. For emergency orders, please email us in advance."
+  },
+
+  // Support & Feedback
+  {
+    tags: ["complaint", "issue", "problem", "support"],
+    response: "We're here to help. Please share the issue you're facing and our support team will assist you shortly.",
+  },
+  {
+    tags: ["feedback", "suggestion", "review"],
+    response: "We value your feedback! Please let us know what you think about our services or how we can improve.",
+  },
+  {
+    tags: ["refund", "return", "money back"],
+    response: "Our refund policy allows for returns within 7 days of purchase for unopened items. Please contact support for assistance."
+  },
+  {
+    tags: ["tracking", "order status", "track order"],
+    response: "To track your order, use the tracking ID sent to your email or contact our support team."
+  },
+
+  // Closing
   {
     tags: ["bye", "goodbye", "see you"],
-    response: "Goodbye! Feel free to ask if you need anything else. 😊",
+    response: "Goodbye! 😊 Feel free to chat again if you need any help or information.",
   }
 ];
 
@@ -126,7 +224,7 @@ function getSmartReply(message) {
 
   return `
     I'm not sure I understand that. 🤔<br>
-    You can ask about: <b>Products</b>, <b>Contact</b>, <b>Location</b>, or <b>Company</b>.
+    You can ask about: <b>Products</b>, <b>Categories</b>, <b>Contact</b>, <b>Location</b>, <b>Timings</b>, or <b>Support</b>.
   `;
 }
 
