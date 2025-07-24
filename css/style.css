@@ -307,27 +307,33 @@ header {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  margin-top: -0.9rem;
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 700;
+  /* font-size: 36px; */
+  /* font-weight: 700; */
   color: #1c1c1c;
   line-height: 1;
   text-decoration: none;
+  /* margin-top: -2rem; */
+}
+.logo img{
+  width: 20rem;
+  margin-left: -2.8rem;
 }
 
-.logo.gradient-text {
+/* .logo.gradient-text {
   background: linear-gradient(90deg, #7b5dfd, #f6416c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 /* Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 50px;
   white-space: nowrap;
 }
 
@@ -341,6 +347,8 @@ header {
 .nav-links li a:hover {
   color: #4caf50;
   transform: scale(1.1);
+  /* font-size: 18px; */
+  /* transition: all 0.3s ease in-out; */
 }
 
 
@@ -403,6 +411,11 @@ header {
   .hero-video-wrapper {
     width: 250px;
     height: 250px;
+  }
+  .logo img{
+    width: 15rem;
+    margin-left: -2rem;
+    margin-top: -0.6rem;
   }
 }
 
