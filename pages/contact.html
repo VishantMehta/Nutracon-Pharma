@@ -19,6 +19,13 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 
 
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function () {
+    emailjs.init("4Mc-VywOamtYrVWtO"); // Replace with your actual EmailJS public key
+  })();
+</script>
+
 </head>
 <body>
 
@@ -81,25 +88,25 @@
     <!-- Contact Form (Left) -->
     <div class="contact-left">
       <h2><i class="fas fa-comment-dots"></i> Send us a <span class="highlight">Message</span></h2>
-      <form class="contact-form" id="contactForm" novalidate>
+     <form class="contact-form" id="contactForm" novalidate>
   <div class="form-row">
     <div class="input-group">
-      <input type="text" id="firstName" placeholder="First Name" />
+      <input type="text" id="firstName" name="first_name" placeholder="First Name" required />
       <small class="error-text" id="firstNameError"></small>
     </div>
     <div class="input-group">
-      <input type="text" id="lastName" placeholder="Last Name" />
+      <input type="text" id="lastName" name="last_name" placeholder="Last Name" required />
       <small class="error-text" id="lastNameError"></small>
     </div>
   </div>
 
   <div class="input-group">
-    <input type="email" id="email" placeholder="Email Address" />
+    <input type="email" id="email" name="user_email" placeholder="Email Address" required />
     <small class="error-text" id="emailError"></small>
   </div>
 
   <div class="input-group">
-    <select id="subject">
+    <select id="subject" name="subject" required>
       <option value="">Subject</option>
       <option>General Inquiry</option>
       <option>Partnership</option>
@@ -109,7 +116,7 @@
   </div>
 
   <div class="input-group">
-    <textarea id="message" placeholder="Message"></textarea>
+    <textarea id="message" name="message" placeholder="Message" required></textarea>
     <small class="error-text" id="messageError"></small>
   </div>
 
@@ -192,10 +199,9 @@
     <div class="footer-about">
       <h2>Nutra <span>Pharma</span></h2>
       <p>Leading pharmaceutical company committed to delivering innovation, care, and affordability for a healthier tomorrow.</p>
-      <br class="footer-address">
+      <div class="footer-address">
         <p><i class="fa-solid fa-location-dot"></i> NUTRACON PHARMA
         <br>DUBAI, United Arab Emirates</p>
-        <br><br>
         <p><i class="fa-solid fa-phone"></i> +971 55 555 5555</p>
         <p><i class="fa-solid fa-envelope"></i> info@nutrapharma.com</p>
       </div>
@@ -229,13 +235,9 @@
 </footer>
 
 
-
 <script src="../js/contact.js">
  
   </script>
 </body>
-<<<<<<< HEAD
+
 </html>
-=======
-</html>
->>>>>>> 4f505b1bacfa7add590179f83587376e96d92b1d

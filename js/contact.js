@@ -8,6 +8,37 @@ window.addEventListener("load", () => {
     }, 1800); // Loader stays visible for 2.5s
   });
     
+
+  // for mail js
+ document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const fullName = `${firstName} ${lastName}`;
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value.trim();
+
+    const templateParams = {
+      user_name: fullName,
+      user_email: email,
+      subject: subject,
+      message: message,
+    };
+
+    emailjs.send("service_9i6jqqz", "template_5hkvpwe", templateParams)
+      .then(function (response) {
+        alert("Message sent successfully!");
+        document.getElementById("contactForm").reset();
+      }, function (error) {
+        alert("Failed to send message. Please try again.");
+        console.error("EmailJS error:", error);
+      });
+  });
+
+
+
 // for hamburger toggling 
 function toggleMenu() {
   const nav = document.getElementById("navLinks");
@@ -319,3 +350,5 @@ function getSmartReply(message) {
     You can ask about: <b>Products</b>, <b>Categories</b>, <b>Contact</b>, <b>Location</b>, <b>Timings</b>, or <b>Support</b>.
   `;
 }
+
+

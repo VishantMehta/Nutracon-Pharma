@@ -275,7 +275,7 @@ header {
 
 
 
-
+    
 /* Footer styles */
 .farhanpharma-footer {
   background: linear-gradient(to right, #0c0c0c, #1e1e1e);
@@ -389,7 +389,6 @@ header {
     margin: 0 10px;
   }
 }
-
 /* Sexy Black Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -596,9 +595,3 @@ header {
   margin-top: 4px;
   display: block;
 }
-
-<<<<<<< HEAD
-/* map */
-=======
-/* map */
->>>>>>> 4f505b1bacfa7add590179f83587376e96d92b1d
