@@ -13,6 +13,30 @@ window.addEventListener("load", () => {
     }, 1500);
 });
 
+// for popup 
+document.addEventListener("DOMContentLoaded", function() {
+  const learnBtns = document.querySelectorAll(".learn-btn");
+  const popupOverlay = document.getElementById("popupOverlay");
+  const closePopup = document.getElementById("closePopup");
+
+  learnBtns.forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault(); // stop default link behavior
+      popupOverlay.classList.add("active");
+    });
+  });
+
+  closePopup.addEventListener("click", function() {
+    popupOverlay.classList.remove("active");
+  });
+
+  // Close popup when clicking outside the box
+  popupOverlay.addEventListener("click", function(e) {
+    if (e.target === popupOverlay) {
+      popupOverlay.classList.remove("active");
+    }
+  });
+});
 
 
 // for hamburger toggling 
@@ -273,3 +297,4 @@ function getSmartReply(message) {
     You can ask about: <b>Products</b>, <b>Categories</b>, <b>Contact</b>, <b>Location</b>, <b>Timings</b>, or <b>Support</b>.
   `;
 }
+
