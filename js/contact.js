@@ -9,33 +9,43 @@ window.addEventListener("load", () => {
   });
     
 
-  // for mail js
- document.getElementById("contactForm").addEventListener("submit", function (e) {
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    
+    try {
+        const formData = new FormData(this);
+        const response = await fetch('process_form.php', { // or your Node.js endpoint
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Thank you! Your message has been sent.');
+            this.reset();
+        } else {
+            // Show validation errors if any
+            if (result.errors) {
+                for (const [field, error] of Object.entries(result.errors)) {
+                    const errorElement = document.getElementById(`${field}Error`);
+                    if (errorElement) errorElement.textContent = error;
+                }
+            }
+        }
+    } catch (error) {
+        alert('An error occurred. Please try again later.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    }
+});
 
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
-    const fullName = `${firstName} ${lastName}`;
-    const email = document.getElementById("email").value.trim();
-    const subject = document.getElementById("subject").value;
-    const message = document.getElementById("message").value.trim();
-
-    const templateParams = {
-      user_name: fullName,
-      user_email: email,
-      subject: subject,
-      message: message,
-    };
-
-    emailjs.send("service_9i6jqqz", "template_5hkvpwe", templateParams)
-      .then(function (response) {
-        alert("Message sent successfully!");
-        document.getElementById("contactForm").reset();
-      }, function (error) {
-        alert("Failed to send message. Please try again.");
-        console.error("EmailJS error:", error);
-      });
-  });
 
 
 
