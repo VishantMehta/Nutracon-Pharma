@@ -1,58 +1,89 @@
-// preloader
 window.addEventListener("load", () => {
-    setTimeout(() => {
-      const preloader = document.getElementById("preloader");
-      preloader.style.opacity = "0";
-      preloader.style.transition = "opacity 0.5s ease";
-      setTimeout(() => preloader.style.display = "none", 500);
-    }, 1800); // Loader stays visible for 2.5s
-  });
-
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const submitBtn = this.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    
-    try {
-        const formData = new FormData(this);
-        const formDataObj = Object.fromEntries(formData.entries()); 
-
-        const response = await fetch('/api/contact', {  
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formDataObj)
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            alert('Thank you! Your message has been sent.');
-            this.reset();
-        } else {
-            if (result.errors) {
-                for (const [field, error] of Object.entries(result.errors)) {
-                    const errorElement = document.getElementById(`${field}Error`);
-                    if (errorElement) errorElement.textContent = error;
-                }
-            } else {
-                alert('Something went wrong. Please try again.');
-            }
-        }
-    } catch (error) {
-        console.error(error);
-        alert('An error occurred. Please try again later.');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-    }
+  setTimeout(() => {
+    const preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0";
+    preloader.style.transition = "opacity 0.5s ease";
+    setTimeout(() => preloader.style.display = "none", 500);
+  }, 1800);
 });
 
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-// for hamburger toggling 
+  let isValid = true;
+  const fieldsToValidate = {
+    first_name: { required: true, name: "First Name" },
+    last_name: { required: true, name: "Last Name" },
+    user_email: { required: true, name: "Email", validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || "Enter a valid email" },
+    subject: { required: true, name: "Subject" },
+    message: { required: true, name: "Message" },
+  };
+
+  Object.keys(fieldsToValidate).forEach(id => {
+    const errorEl = document.getElementById(`${id}Error`);
+    if (errorEl) errorEl.textContent = "";
+  });
+
+  for (const id in fieldsToValidate) {
+    const input = document.getElementsByName(id)[0];
+    const errorEl = document.getElementById(`${id}Error`);
+    const value = input.value.trim();
+    const rules = fieldsToValidate[id];
+
+    if (rules.required && !value) {
+      errorEl.textContent = `${rules.name} is required`;
+      isValid = false;
+    } else if (rules.validate) {
+      const validationResult = rules.validate(value);
+      if (validationResult !== true) {
+        errorEl.textContent = validationResult;
+        isValid = false;
+      }
+    }
+  }
+
+  if (!isValid) {
+    return;
+  }
+
+  const submitBtn = this.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+  try {
+    const formData = new FormData(this);
+    const formDataObj = Object.fromEntries(formData.entries());
+
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formDataObj)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert('Thank you! Your message has been sent.');
+      this.reset();
+    } else {
+      if (result.errors) {
+        for (const [field, error] of Object.entries(result.errors)) {
+          const errorElement = document.getElementById(`${field}Error`);
+          if (errorElement) errorElement.textContent = error;
+        }
+      } else {
+        alert('Something went wrong on the server. Please try again.');
+      }
+    }
+  } catch (error) {
+    console.error('Fetch Error:', error);
+    alert('An error occurred. Please check your connection and try again.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+  }
+});
+
 function toggleMenu() {
   const nav = document.getElementById("navLinks");
   const icon = document.getElementById("hamburger").querySelector("i");
@@ -68,114 +99,27 @@ function toggleMenu() {
   }
 }
 
-  const form = document.getElementById("contactForm");
+window.onscroll = function () {
+  const btn = document.getElementById("backToTop");
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
 
-  const fields = {
-    firstName: { required: true, name: "First Name" },
-    lastName: { required: true, name: "Last Name" },
-    email: {
-      required: true,
-      name: "Email",
-      validate: (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || "Enter a valid email",
-    },
-    subject: {
-      required: true,
-      name: "Subject",
-      validate: (value) => value !== "" || "Please select a subject",
-    },
-    message: { required: true, name: "Message" },
-  };
-
-  Object.keys(fields).forEach((id) => {
-    const input = document.getElementById(id);
-    const errorEl = document.getElementById(`${id}Error`);
-    const rules = fields[id];
-
-    input.addEventListener("blur", () => {
-      const value = input.value.trim();
-      if (rules.required && !value) {
-        errorEl.textContent = `${rules.name} is required`;
-      } else if (rules.validate && typeof rules.validate === "function") {
-        const validation = rules.validate(value);
-        errorEl.textContent = validation === true ? "" : validation;
-      } else {
-        errorEl.textContent = "";
-      }
-    });
-
-    input.addEventListener("input", () => {
-      errorEl.textContent = "";
-    });
-  });
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let valid = true;
-
-    Object.keys(fields).forEach((id) => {
-      const input = document.getElementById(id);
-      const errorEl = document.getElementById(`${id}Error`);
-      const value = input.value.trim();
-      const rules = fields[id];
-
-      if (rules.required && !value) {
-        errorEl.textContent = `${rules.name} is required`;
-        valid = false;
-      } else if (rules.validate) {
-        const validation = rules.validate(value);
-        if (validation !== true) {
-          errorEl.textContent = validation;
-          valid = false;
-        } else {
-          errorEl.textContent = "";
-        }
-      } else {
-        errorEl.textContent = "";
-      }
-    });
-
-    if (valid) {
-      alert("Form submitted successfully!");
-      form.reset();
-    }
-  });
-    
+document.getElementById("backToTop").addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 
-
-  
-// back to top button functionality
- // Show/hide button on scroll
-  window.onscroll = function () {
-    const btn = document.getElementById("backToTop");
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
-  };
-
-  // Scroll to top on click
-  document.getElementById("backToTop").addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-
-
-  // chatbot functionality
-  // Enhanced chatbot with extensive knowledge base
-
-let chatContext = ""; // To keep track of current topic
+let chatContext = "";
 
 const intents = [
-  // Greetings
   {
     tags: ["hi", "hello", "hey", "good morning", "good evening"],
     response: "Hi there! 👋 What can I do for you today?",
   },
-
-  // Product Queries
   {
     tags: ["product", "products", "medicine", "medicines"],
     response: "We offer a wide variety of pharmaceutical products including tablets, syrups, supplements, and more. Are you looking for something specific or want to explore our categories?",
@@ -216,8 +160,6 @@ const intents = [
     response: "For overall wellness, DailyMultis and NutraMax Forte are great choices. They support daily nutrition and energy.",
     contextTrigger: "products"
   },
-
-  // Purchase & Availability
   {
     tags: ["buy", "purchase", "order", "available"],
     response: "You can purchase our products through our website or visit our physical store in Dubai. Do you want the purchase link?",
@@ -234,8 +176,6 @@ const intents = [
     tags: ["bulk order", "wholesale", "distributor"],
     response: "We do accept bulk and wholesale orders. Please contact our sales team at ✉️ sales@nutraconpharma.com for pricing and partnership options.",
   },
-
-  // Company Details
   {
     tags: ["about", "company", "who are you"],
     response: "We are Nutracon Pharma, dedicated to health and wellness since 2001. We specialize in nutraceuticals, prescription medicines, and wellness supplements.",
@@ -256,8 +196,6 @@ const intents = [
     tags: ["team", "employees", "staff"],
     response: "Our team comprises pharmacists, scientists, researchers, and customer support specialists who are all dedicated to your well-being."
   },
-
-  // Customer Support
   {
     tags: ["contact", "email", "phone", "call"],
     response: "You can reach us at 📞 +971-123-456 or ✉️ contact@nutraconpharma.com. Our support is available Mon-Fri, 9am-6pm.",
@@ -274,8 +212,6 @@ const intents = [
     tags: ["holiday", "closed", "off days"],
     response: "We are closed on Sundays and public holidays. For emergency orders, please email us in advance."
   },
-
-  // Support & Feedback
   {
     tags: ["complaint", "issue", "problem", "support"],
     response: "We're here to help. Please share the issue you're facing and our support team will assist you shortly.",
@@ -292,8 +228,6 @@ const intents = [
     tags: ["tracking", "order status", "track order"],
     response: "To track your order, use the tracking ID sent to your email or contact our support team."
   },
-
-  // Closing
   {
     tags: ["bye", "goodbye", "see you"],
     response: "Goodbye! 😊 Feel free to chat again if you need any help or information.",
@@ -357,11 +291,8 @@ function getSmartReply(message) {
       }
     }
   }
-
   return `
     I'm not sure I understand that. 🤔<br>
     You can ask about: <b>Products</b>, <b>Categories</b>, <b>Contact</b>, <b>Location</b>, <b>Timings</b>, or <b>Support</b>.
   `;
 }
-
-
