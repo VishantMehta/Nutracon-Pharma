@@ -7,21 +7,24 @@ window.addEventListener("load", () => {
       setTimeout(() => preloader.style.display = "none", 500);
     }, 1800); // Loader stays visible for 2.5s
   });
-    
 
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Show loading state
     const submitBtn = this.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     
     try {
         const formData = new FormData(this);
-        const response = await fetch('process_form.php', { // or your Node.js endpoint
+        const formDataObj = Object.fromEntries(formData.entries()); 
+
+        const response = await fetch('/api/contact', {  
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formDataObj)
         });
         
         const result = await response.json();
@@ -30,23 +33,23 @@ document.getElementById('contactForm').addEventListener('submit', async function
             alert('Thank you! Your message has been sent.');
             this.reset();
         } else {
-            // Show validation errors if any
             if (result.errors) {
                 for (const [field, error] of Object.entries(result.errors)) {
                     const errorElement = document.getElementById(`${field}Error`);
                     if (errorElement) errorElement.textContent = error;
                 }
+            } else {
+                alert('Something went wrong. Please try again.');
             }
         }
     } catch (error) {
+        console.error(error);
         alert('An error occurred. Please try again later.');
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
     }
 });
-
-
 
 
 // for hamburger toggling 
