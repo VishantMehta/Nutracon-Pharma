@@ -1,8 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const path = require('path');
+const express = require("express");
+const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
+const cors = require("cors");
+const path = require("path");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "./test.env" });
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -53,6 +57,7 @@ app.post('/submit-form', async (req, res) => {
                 <p><strong>Name:</strong> ${first_name} ${last_name}</p>
                 <p><strong>Email:</strong> ${user_email}</p>
                 <p><strong>Subject:</strong> ${subject}</p>
+                <p><strong>Mobile:</strong> ${mobile_number}</p>
                 <p><strong>Message:</strong></p>
                 <p>${message}</p>
             `
