@@ -273,6 +273,7 @@ header {
   justify-content: space-between;
   position: relative;
   margin-top: -0.9rem;
+  margin-bottom: -1rem;
 }
 
 .logo {

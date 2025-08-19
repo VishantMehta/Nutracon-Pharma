@@ -2278,6 +2278,7 @@ header {
             box-shadow: var(--shadow-base);
             opacity: 0;
             transform: translateY(40px);
+            transform-style: preserve-3d;
         }
 
         .principles-hero-card::before {

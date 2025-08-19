@@ -1212,7 +1212,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         const rotateX = (y - centerY) / 15;
                         const rotateY = (centerX - x) / 15;
                         
-                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.03)`;
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(0.93)`;
                     });
 
                     // Reset transform on mouse leave
@@ -1258,7 +1258,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 cards.forEach((card) => {
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(40px)';
-                    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    card.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
                     observer.observe(card);
                 });
             }
