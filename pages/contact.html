@@ -12,19 +12,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/contact.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
    <!-- favicon link -->
   <link rel="icon" href="../assets/favicon.png" type="image/png">
 <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function () {
-    emailjs.init("4Mc-VywOamtYrVWtO"); // Replace with your actual EmailJS public key
-  })();
-</script>
 
 </head>
 <body>
@@ -78,6 +74,10 @@
     </div>
   </header>
 
+
+
+  
+ 
   
 <!-- 🧊 CONTACT SECTION -->
 <section class="contact-main">
@@ -88,7 +88,8 @@
     <!-- Contact Form (Left) -->
     <div class="contact-left">
       <h2><i class="fas fa-comment-dots"></i> Send us a <span class="highlight">Message</span></h2>
-     <form class="contact-form" id="contactForm" novalidate>
+
+<form class="contact-form" id="contactForm" novalidate action="https://formspree.io/f/mrblwgdp" method="POST">
   <div class="form-row">
     <div class="input-group">
       <input type="text" id="firstName" name="first_name" placeholder="First Name" required />
@@ -105,11 +106,10 @@
     <small class="error-text" id="emailError"></small>
   </div>
 
- <!-- ✅ Mobile Number Field -->
-      <div class="input-group">
-        <input type="tel" id="mobile" name="mobile_number" placeholder="Mobile Number" pattern="[0-9]{10}" required />
-        <small class="error-text" id="mobileError"></small>
-      </div>
+  <div class="input-group">
+    <input type="tel" id="mobile" name="mobile_number" placeholder="Mobile Number" pattern="[0-9]{10}" required />
+    <small class="error-text" id="mobileError"></small>
+  </div>
 
   <div class="input-group">
     <select id="subject" name="subject" required>
@@ -127,10 +127,25 @@
     <small class="error-text" id="messageError"></small>
   </div>
 
-  <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+  <button type="submit" id="submitBtn">
+    <i class="fas fa-paper-plane"></i> Send Message
+  </button>
 </form>
 
     </div>
+
+<!-- ✅ Success Popup -->
+<div id="successPopup" class="popup-overlay">
+  <div class="popup-box">
+    <div class="popup-icon">✔</div>
+    <p class="popup-message">Thank you for your message! We'll get back to you soon.</p>
+    <button class="popup-btn" onclick="closePopup()">Close</button>
+  </div>
+</div>
+
+
+
+
 
     <!-- Info Cards (Right) -->
     <div class="contact-right">
@@ -173,6 +188,30 @@
       </div>
     </div>
   </div>
+
+
+
+ <!-- ✅ WhatsApp Contact Section -->
+<section id="whatsapp-contact-section" class="whatsapp-section">
+  <div class="whatsapp-container">
+    <h2 class="whatsapp-heading">Contact Us on WhatsApp</h2>
+    <p class="whatsapp-text">
+      Prefer quick responses? Reach out to us directly on WhatsApp.  
+      Our support team is available to assist you with inquiries, partnerships, or any questions.  
+    </p>
+
+    <div class="whatsapp-details">
+      <p>📞 <strong>Available:</strong> Mon – Sat, 9:00 AM – 6:00 PM</p>
+      <p>⚡ <strong>Response Time:</strong> Usually within 1 hour</p>
+    </div>
+
+    <button class="whatsapp-action-btn" onclick="openWhatsAppChat()">
+      <i class="fab fa-whatsapp"></i> Start WhatsApp Chat
+    </button>
+  </div>
+</section>
+
+
 
   <!-- Find Us Section -->
  <div class="contact-map-box">
@@ -248,7 +287,7 @@
 <script src="../js/contact.js">
  
   </script>
-  <script src="../server.js"></script>
+  <!-- <script src="../server.js"></script> -->
   
 
 </body>

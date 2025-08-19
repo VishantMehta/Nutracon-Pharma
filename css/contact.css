@@ -423,7 +423,8 @@ header {
 
 .contact-heading {
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 4rem;
+  font-weight: 300;
   margin-bottom: 10px;
 }
 
@@ -594,4 +595,166 @@ header {
   font-size: 0.85rem;
   margin-top: 4px;
   display: block;
+}
+
+
+/* 🔹 Popup Overlay */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* 🔹 Popup Box */
+.popup-box {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  transform: scale(0.8);
+  opacity: 0;
+  animation: popupIn 0.3s ease forwards;
+}
+
+/* ✅ Success Icon */
+.popup-icon {
+  font-size: 60px;
+  color: #2ecc71;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* ✅ Message */
+.popup-message {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #eaeaea;
+  font-weight: 500;
+}
+
+/* ✅ Button */
+.popup-btn {
+  background: #2ecc71;
+  border: none;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 300;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+.popup-btn:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+}
+.popup-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ✅ Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes popupIn {
+  to {transform: scale(1); opacity: 1;}
+}
+@keyframes popupOut {
+  from {transform: scale(1); opacity: 1;}
+  to {transform: scale(0.8); opacity: 0;}
+}
+
+/* 🔹 Button Styles */
+#submitBtn {
+  background: #2ecc71;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#submitBtn:disabled {
+  background: #27ae60;
+  cursor: not-allowed;
+}
+
+
+/* whatsapp  */
+
+/* 🔹 WhatsApp Section Styles (Unique Classes) */
+.whatsapp-section {
+  /* background: #0f0f0f; */
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
+  /* border-top: 2px solid #25D366; */
+}
+
+.whatsapp-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.whatsapp-heading {
+  font-size: 40px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.whatsapp-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.whatsapp-details {
+  font-size: 15px;
+  margin-bottom: 25px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.whatsapp-action-btn {
+  background: #25D366;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.whatsapp-action-btn i {
+  font-size: 20px;
+}
+
+.whatsapp-action-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-action-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }

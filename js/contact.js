@@ -7,82 +7,138 @@ window.addEventListener("load", () => {
   }, 1800);
 });
 
-document.getElementById('contactForm').addEventListener('submit', async function (e) {
+// whatsapp contact 
+
+function openWhatsAppChat() {
+  // ✅ Replace with your WhatsApp number (with country code, no "+" or spaces)
+  const phoneNumber = "+971547049210"; 
+  const message = "Hello! I’d like to know more about your services.";
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
+
+
+
+// contact form 
+const form = document.getElementById("contactForm");
+const popup = document.getElementById("successPopup");
+const submitBtn = document.getElementById("submitBtn");
+let popupBox = document.querySelector(".popup-box");
+
+form.addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  let isValid = true;
-  const fieldsToValidate = {
-    first_name: { required: true, name: "First Name" },
-    last_name: { required: true, name: "Last Name" },
-    user_email: { required: true, name: "Email", validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || "Enter a valid email" },
-    subject: { required: true, name: "Subject" },
-    message: { required: true, name: "Message" },
-  };
-
-  Object.keys(fieldsToValidate).forEach(id => {
-    const errorEl = document.getElementById(`${id}Error`);
-    if (errorEl) errorEl.textContent = "";
-  });
-
-  for (const id in fieldsToValidate) {
-    const input = document.getElementsByName(id)[0];
-    const errorEl = document.getElementById(`${id}Error`);
-    const value = input.value.trim();
-    const rules = fieldsToValidate[id];
-
-    if (rules.required && !value) {
-      errorEl.textContent = `${rules.name} is required`;
-      isValid = false;
-    } else if (rules.validate) {
-      const validationResult = rules.validate(value);
-      if (validationResult !== true) {
-        errorEl.textContent = validationResult;
-        isValid = false;
-      }
-    }
-  }
-
-  if (!isValid) {
-    return;
-  }
-
-  const submitBtn = this.querySelector('button[type="submit"]');
+  // Show loading state on button
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-  try {
-    const formData = new FormData(this);
-    const formDataObj = Object.fromEntries(formData.entries());
+  const formData = new FormData(form);
 
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formDataObj)
+  try {
+    let response = await fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
     });
 
-    const result = await response.json();
-
-    if (result.success) {
-      alert('Thank you! Your message has been sent.');
-      this.reset();
+    if (response.ok) {
+      form.reset();
+      popup.style.display = "flex";  // Show popup
     } else {
-      if (result.errors) {
-        for (const [field, error] of Object.entries(result.errors)) {
-          const errorElement = document.getElementById(`${field}Error`);
-          if (errorElement) errorElement.textContent = error;
-        }
-      } else {
-        alert('Something went wrong on the server. Please try again.');
-      }
+      alert("Oops! Something went wrong. Please try again.");
     }
   } catch (error) {
-    console.error('Fetch Error:', error);
-    alert('An error occurred. Please check your connection and try again.');
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    alert("Error submitting form. Please try again.");
   }
+
+  // Reset button after submit
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
 });
+
+function closePopup() {
+  popupBox.style.animation = "popupOut 0.3s ease forwards";
+  setTimeout(() => {
+    popup.style.display = "none";
+    popupBox.style.animation = "popupIn 0.3s ease forwards"; // reset for next open
+  }, 300);
+}
+// document.getElementById('contactForm').addEventListener('submit', async function (e) {
+//   e.preventDefault();
+
+//   let isValid = true;
+//   const fieldsToValidate = {
+//     first_name: { required: true, name: "First Name" },
+//     last_name: { required: true, name: "Last Name" },
+//     user_email: { required: true, name: "Email", validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || "Enter a valid email" },
+//     subject: { required: true, name: "Subject" },
+//     message: { required: true, name: "Message" },
+//   };
+
+//   Object.keys(fieldsToValidate).forEach(id => {
+//     const errorEl = document.getElementById(`${id}Error`);
+//     if (errorEl) errorEl.textContent = "";
+//   });
+
+//   for (const id in fieldsToValidate) {
+//     const input = document.getElementsByName(id)[0];
+//     const errorEl = document.getElementById(`${id}Error`);
+//     const value = input.value.trim();
+//     const rules = fieldsToValidate[id];
+
+//     if (rules.required && !value) {
+//       errorEl.textContent = `${rules.name} is required`;
+//       isValid = false;
+//     } else if (rules.validate) {
+//       const validationResult = rules.validate(value);
+//       if (validationResult !== true) {
+//         errorEl.textContent = validationResult;
+//         isValid = false;
+//       }
+//     }
+//   }
+
+//   if (!isValid) {
+//     return;
+//   }
+
+//   const submitBtn = this.querySelector('button[type="submit"]');
+//   submitBtn.disabled = true;
+//   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+//   try {
+//     const formData = new FormData(this);
+//     const formDataObj = Object.fromEntries(formData.entries());
+
+//     const response = await fetch('/api/contact', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(formDataObj)
+//     });
+
+//     const result = await response.json();
+
+//     if (result.success) {
+//       alert('Thank you! Your message has been sent.');
+//       this.reset();
+//     } else {
+//       if (result.errors) {
+//         for (const [field, error] of Object.entries(result.errors)) {
+//           const errorElement = document.getElementById(`${field}Error`);
+//           if (errorElement) errorElement.textContent = error;
+//         }
+//       } else {
+//         alert('Something went wrong on the server. Please try again.');
+//       }
+//     }
+//   } catch (error) {
+//     console.error('Fetch Error:', error);
+//     alert('An error occurred. Please check your connection and try again.');
+//   } finally {
+//     submitBtn.disabled = false;
+//     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+//   }
+// });
 
 function toggleMenu() {
   const nav = document.getElementById("navLinks");
