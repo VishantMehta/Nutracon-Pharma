@@ -1,43 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products | Nutracon Pharma</title>
+  <title>Contact | Nutracon Pharma</title>
 
-  <!-- Google Font -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="../css/contact.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/contact.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-   <!-- favicon link -->
   <link rel="icon" href="../assets/favicon.png" type="image/png">
-<link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
-<link rel="apple-touch-icon" href="../assets/favicon.png">
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="../assets/favicon.png">
 
 </head>
+
 <body>
+  <div class="background-blob blob1"></div>
+  <div class="background-blob blob2"></div>
+  <div class="background-blob blob3"></div>
 
+  <div id="preloader">
+    <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
+      <circle class="pl__ring" r="56" cx="64" cy="64" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="16"
+        stroke-linecap="round" />
+      <path class="pl__worm"
+        d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z"
+        fill="none" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="44 1111" stroke-dashoffset="10" />
+    </svg>
+  </div>
 
-  
-<!-- Preloader -->
-<div id="preloader">
-  <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
-    <circle class="pl__ring" r="56" cx="64" cy="64" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="16" stroke-linecap="round" />
-    <path class="pl__worm" d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z"
-      fill="none" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="44 1111" stroke-dashoffset="10" />
-  </svg>
-</div>
-
-
-  <!-- 🔥 EXACT SAME TOP HEADER FROM HOME -->
   <div class="top-header">
     <div class="top-header-content">
       <div class="contact-info">
@@ -53,245 +48,176 @@
     </div>
   </div>
 
-  <!-- 🔥 EXACT SAME NAVBAR FROM HOME -->
   <header>
     <div class="navbar">
-     <a href="../index.html" class="logo" data-translate="logo"> <img src="../assets/logo.png" alt="Nutracon Pharma Logo">
-    </a>
-
-
+      <a href="../index.html" class="logo" data-translate="logo"> <img src="../assets/logo.png"
+          alt="Nutracon Pharma Logo">
+      </a>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
         <i class="fas fa-bars"></i>
       </div>
-
       <ul class="nav-links" id="navLinks">
         <li><a href="../index.html" data-translate="nav-home">Home</a></li>
-        <li><a href="about.html" data-translate="nav-about">About&nbsp;Us</a></li>
-        <li><a href="product.html" class="active" data-translate="nav-products">Products</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <!-- <li><a href="events.html">Events</a></li> -->
+        <li><a href="about.html" data-translate="nav-about">About Us</a></li>
+        <li><a href="product.html" data-translate="nav-products">Products</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </div>
   </header>
 
-
-
-  
- 
-  
-<!-- 🧊 CONTACT SECTION -->
-<section class="contact-main">
-  <h1 class="contact-heading">Contact <span class="highlight">Us</span></h1>
-  <p class="contact-subtext">Get in touch with our team for inquiries, partnerships, or support.</p>
-
-  <div class="contact-container">
-    <!-- Contact Form (Left) -->
-    <div class="contact-left">
-      <h2><i class="fas fa-comment-dots"></i> Send us a <span class="highlight">Message</span></h2>
-
-<form class="contact-form" id="contactForm" novalidate action="https://formspree.io/f/mrblwgdp" method="POST">
-  <div class="form-row">
-    <div class="input-group">
-      <input type="text" id="firstName" name="first_name" placeholder="Name" required />
-      <small class="error-text" id="firstNameError"></small>
+  <section class="contact-hero">
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+      <p class="subheading">Get in touch with our team for inquiries, partnerships, or support.</p>
     </div>
-    <div class="input-group">
-      <input type="text" id="lastName" name="last_name" placeholder="Last Name" required />
-      <small class="error-text" id="lastNameError"></small>
-    </div>
-  </div>
+  </section>
 
-  <div class="input-group">
-    <input type="email" id="email" name="user_email" placeholder="Email Address" required />
-    <small class="error-text" id="emailError"></small>
-  </div>
-
-  <div class="input-group">
-    <input type="tel" id="mobile" name="mobile_number" placeholder="Mobile Number" pattern="[0-9]{10}" required />
-    <small class="error-text" id="mobileError"></small>
-  </div>
-
-  <div class="input-group">
-    <select id="subject" name="subject" required>
-      <option value="">Subject</option>
-      <option>General Inquiry</option>
-      <option>Partnership</option>
-      <option>Support</option>
-      <option>Other</option>
-    </select>
-    <small class="error-text" id="subjectError"></small>
-  </div>
-
-  <div class="input-group">
-    <textarea id="message" name="message" placeholder="Message" required></textarea>
-    <small class="error-text" id="messageError"></small>
-  </div>
-
-  <button type="submit" id="submitBtn">
-    <i class="fas fa-paper-plane"></i> Send Message
-  </button>
-</form>
-
-    </div>
-
-<!-- ✅ Success Popup -->
-<div id="successPopup" class="popup-overlay">
-  <div class="popup-box">
-    <div class="popup-icon">✔</div>
-    <p class="popup-message">Thank you for your message! We'll get back to you soon.</p>
-    <button class="popup-btn" onclick="closePopup()">Close</button>
-  </div>
-</div>
-
-
-
-
-
-    <!-- Info Cards (Right) -->
-    <div class="contact-right">
-      <div class="contact-card">
-        <div class="card-icon" style="background: #00bfff;">
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
-        <div>
-          <h3>Address</h3>
-          <p>
-            NUTRACON PHARMA <br />
-            Dubai, United Arab Emirates
-          </p>
-           <p><i class="fa-solid fa-phone"></i> +97142868578</p>
-        <p><i class="fa-solid fa-mobile"></i> +971547049210</p>
-         <p><i class="fa-solid fa-fax"></i> +971547041203</p> 
-        </div>
+  <section class="contact-main">
+    <div class="contact-container">
+      <div class="contact-left">
+        <h2><i class="fas fa-comment-dots"></i> Send us a <span class="highlight">Message</span></h2>
+        <form class="contact-form" id="contactForm" novalidate action="https://formspree.io/f/mrblwgdp" method="POST">
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="firstName" name="first_name" placeholder="Name" required />
+              <small class="error-text" id="firstNameError"></small>
+            </div>
+            <div class="input-group">
+              <input type="text" id="lastName" name="last_name" placeholder="Last Name" required />
+              <small class="error-text" id="lastNameError"></small>
+            </div>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" name="user_email" placeholder="Email Address" required />
+            <small class="error-text" id="emailError"></small>
+          </div>
+          <div class="input-group">
+            <input type="tel" id="mobile" name="mobile_number" placeholder="Mobile Number" pattern="[0-9]{10}"
+              required />
+            <small class="error-text" id="mobileError"></small>
+          </div>
+          <div class="input-group">
+            <select id="subject" name="subject" required>
+              <option value="">Subject</option>
+              <option>General Inquiry</option>
+              <option>Partnership</option>
+              <option>Support</option>
+              <option>Other</option>
+            </select>
+            <small class="error-text" id="subjectError"></small>
+          </div>
+          <div class="input-group">
+            <textarea id="message" name="message" placeholder="Message" required></textarea>
+            <small class="error-text" id="messageError"></small>
+          </div>
+          <button type="submit" id="submitBtn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
       </div>
 
-      <div class="contact-card">
-        <div class="card-icon" style="background: #b833ff;">
-          <i class="fas fa-envelope"></i>
+      <div class="contact-right">
+        <div class="contact-card">
+          <div class="card-icon" style="background: #00bfff;">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h3>Address</h3>
+            <p>NUTRACON PHARMA <br />Dubai, United Arab Emirates</p>
+            <p><i class="fa-solid fa-phone"></i> +97142868578</p>
+          </div>
         </div>
-        <div>
-          <h3>Email</h3>
-          <p>info@nutraconpharma.com</p>
+        <div class="contact-card">
+          <div class="card-icon" style="background: #b833ff;">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p>info@nutraconpharma.com</p>
+          </div>
         </div>
-      </div>
-
-      <div class="contact-card">
-        <div class="card-icon" style="background: #ff5e00;">
-          <i class="fas fa-clock"></i>
-        </div>
-        <div>
-          <h3>Business Hours</h3>
-          <p>
-            Monday - Friday: 9:00 AM – 6:00 PM<br />
-            Saturday: 9:00 AM – 2:00 PM<br />
-            Sunday: Closed
-          </p>
+        <div class="contact-card">
+          <div class="card-icon" style="background: #ff5e00;">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <h3>Business Hours</h3>
+            <p>
+              Monday - Saturday: 9:00 AM – 6:00 PM<br />
+              Sunday: Closed
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <section id="whatsapp-contact-section" class="whatsapp-section">
+      <div class="whatsapp-container">
+        <h2 class="whatsapp-heading">Contact Us on WhatsApp</h2>
+        <p class="whatsapp-text">
+          Prefer quick responses? Reach out to us directly on WhatsApp for any questions.
+        </p>
+        <button class="whatsapp-action-btn" onclick="openWhatsAppChat()">
+          <i class="fab fa-whatsapp"></i> Start WhatsApp Chat
+        </button>
+      </div>
+    </section>
 
-
- <!-- ✅ WhatsApp Contact Section -->
-<section id="whatsapp-contact-section" class="whatsapp-section">
-  <div class="whatsapp-container">
-    <h2 class="whatsapp-heading">Contact Us on WhatsApp</h2>
-    <p class="whatsapp-text">
-      Prefer quick responses? Reach out to us directly on WhatsApp.  
-      Our support team is available to assist you with inquiries, partnerships, or any questions.  
-    </p>
-
-    <div class="whatsapp-details">
-      <p>📞 <strong>Available:</strong> Mon – Sat, 9:00 AM – 6:00 PM</p>
-      <p>⚡ <strong>Response Time:</strong> Usually within 1 hour</p>
-    </div>
-
-    <button class="whatsapp-action-btn" onclick="openWhatsAppChat()">
-      <i class="fab fa-whatsapp"></i> Start WhatsApp Chat
-    </button>
-  </div>
-</section>
-
-
-
-  <!-- Find Us Section -->
- <div class="contact-map-box">
-  <h2>Find <span class="highlight">Us</span></h2>
-  <div class="map-container">
-  
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.9061145978408!2d55.405791775234235!3d25.17264777772673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6136d1e446c3%3A0x14b78ca555f6d486!2sCluster%2010%20England!5e0!3m2!1sen!2sin!4v1753206270354!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      width="100%" 
-      height="400" 
-      style="border:0; border-radius: 10px;" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-</div>
-
-</section>
-
-
-
-
-
-
-
-
-<!-- footer  -->
-
-<footer class="farhanpharma-footer">
-  <div class="footer-content">
-    <div class="footer-about">
-      <h2>Nutracon <span>Pharma</span></h2>
-      <p>Leading pharmaceutical company committed to delivering innovation, care, and affordability for a healthier tomorrow.</p>
-      <div class="footer-address">
-        <p><i class="fa-solid fa-location-dot"></i> NUTRACON PHARMA
-        <br>DUBAI, United Arab Emirates</p>
-        <p><i class="fa-solid fa-phone"></i> +97142868578</p>
-        <p><i class="fa-solid fa-mobile"></i> +971547049210</p>
-         <p><i class="fa-solid fa-fax"></i> +971547041203</p> 
-        <p><i class="fa-solid fa-envelope"></i> info@nutraconpharma.com</p>
+    <div class="contact-map-box">
+      <h2>Find <span class="highlight">Us</span></h2>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.232323049079!2d55.385152!3d25.262654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5c5b5f5f5f5f%3A0x3e5f5c5b5f5f5f5f!2sNUTRACON%20PHARMA!5e0!3m2!1sen!2sae!4v1634208750515!5m2!1sen!2sae"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
+  </section>
 
-    <div class="footer-links">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Values</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+  <div id="successPopup" class="popup-overlay">
+    <div class="popup-box">
+      <div class="popup-icon">✔</div>
+      <p class="popup-message">Thank you for your message! We'll get back to you soon.</p>
+      <button class="popup-btn" onclick="closePopup()">Close</button>
     </div>
+  </div>
 
-    <div class="footer-social">
-      <h3>Follow Us</h3>
-      <div class="social-icons">
-        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+  <footer class="farhanpharma-footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <h2>Nutracon <span>Pharma</span></h2>
+        <p>Leading pharmaceutical company committed to delivering innovation, care, and affordability for a healthier
+          tomorrow.</p>
+        <div class="footer-address">
+          <p><i class="fa-solid fa-location-dot"></i> NUTRACON PHARMA, DUBAI, UAE</p>
+          <p><i class="fa-solid fa-phone"></i> +97142868578</p>
+          <p><i class="fa-solid fa-mobile"></i> +971547049210</p>
+          <p><i class="fa-solid fa-envelope"></i> info@nutraconpharma.com</p>
+        </div>
       </div>
-      <p class="dev-credit">Developer Credit<br><span>Tabish and Fahad </span></p>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="footer-bottom">
+      &copy; 2025 Nutracon Pharma. All rights reserved.
+    </div>
+  </footer>
 
-  <div class="footer-bottom">
-    &copy; 2025 Nutracon Pharma. All rights reserved.
-  </div>
-</footer>
-
-
-
-<script src="../js/contact.js">
- 
-  </script>
-  <!-- <script src="../server.js"></script> -->
-  
-
+  <script src="../js/contact.js"></script>
 </body>
 
 </html>

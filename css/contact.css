@@ -9,85 +9,149 @@ html {
   scroll-behavior: smooth;
 }
 
-        body {
-           font-family: 'Manrope', sans-serif;
-    background: linear-gradient(135deg, #000000 0%, #151515 50%, #000000 100%);
-    /* background: grey; */
-
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-        }
-
-
-
-        
-
-        
-/* Root Theme */
-:root {
-  --bg: white;
-  --fg: black;
-  /* font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320)); */
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: #fefef9;
+  color: #111;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Preloader Container */
+/* --- Styles for Decorative Background Blobs --- */
+.background-blob {
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.15;
+  filter: blur(80px);
+}
+
+.blob1 {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  left: -150px;
+  background-color: #a7d7ff;
+}
+
+.blob2 {
+  width: 350px;
+  height: 350px;
+  top: 30%;
+  right: -150px;
+  background-color: #b5ffc2;
+}
+
+.blob3 {
+  width: 300px;
+  height: 300px;
+  bottom: 5%;
+  left: 20%;
+  background-color: #ffe8a3;
+}
+
+/* Preloader Styles */
 #preloader {
   position: fixed;
   width: 100%;
   height: 100vh;
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: white;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 
-/* Loader Styles */
 .pl,
 .pl__worm {
   animation-duration: 3s;
   animation-iteration-count: infinite;
 }
+
 .pl {
   animation-name: bump;
   animation-timing-function: linear;
   width: 5em;
   height: 5em;
 }
+
 .pl__ring {
   stroke: rgba(0, 0, 0, 0.1);
 }
+
 .pl__worm {
   stroke: black;
   animation-name: worm;
   animation-timing-function: cubic-bezier(0.42, 0.17, 0.75, 0.83);
 }
 
-/* Animations */
 @keyframes bump {
+
   from,
-  42%, 46%, 51%, 55%, 59%, 63%, 67%, 71%, 74%, 78%, 81%, 85%, 88%, 92%, to {
+  42%,
+  46%,
+  51%,
+  55%,
+  59%,
+  63%,
+  67%,
+  71%,
+  74%,
+  78%,
+  81%,
+  85%,
+  88%,
+  92%,
+  to {
     transform: translate(0, 0);
   }
-  44% { transform: translate(1.33%, 6.75%); }
-  53% { transform: translate(-16.67%, -0.54%); }
-  61% { transform: translate(3.66%, -2.46%); }
-  69% { transform: translate(-0.59%, 15.27%); }
-  76% { transform: translate(-1.92%, -4.68%); }
-  83% { transform: translate(9.38%, 0.96%); }
-  90% { transform: translate(-4.55%, 1.98%); }
+
+  44% {
+    transform: translate(1.33%, 6.75%);
+  }
+
+  53% {
+    transform: translate(-16.67%, -0.54%);
+  }
+
+  61% {
+    transform: translate(3.66%, -2.46%);
+  }
+
+  69% {
+    transform: translate(-0.59%, 15.27%);
+  }
+
+  76% {
+    transform: translate(-1.92%, -4.68%);
+  }
+
+  83% {
+    transform: translate(9.38%, 0.96%);
+  }
+
+  90% {
+    transform: translate(-4.55%, 1.98%);
+  }
 }
 
 @keyframes worm {
-  from { stroke-dashoffset: 10; }
-  25% { stroke-dashoffset: 295; }
-  to { stroke-dashoffset: 1165; }
+  from {
+    stroke-dashoffset: 10;
+  }
+
+  25% {
+    stroke-dashoffset: 295;
+  }
+
+  to {
+    stroke-dashoffset: 1165;
+  }
 }
 
-       
-/* Top Header */
+/* Header & Navbar Styles */
 .top-header {
   background-color: #000;
   color: #fff;
@@ -115,10 +179,6 @@ html {
   gap: 8px;
 }
 
-.contact-info i {
-  font-size: 12px;
-}
-
 .social-links {
   display: flex;
   gap: 15px;
@@ -141,12 +201,6 @@ html {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.social-links i {
-  font-size: 14px;
-}
-
-
-/* Navbar Base */
 header {
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -154,6 +208,7 @@ header {
   position: relative;
   z-index: 1000;
 }
+
 .navbar {
   display: flex;
   align-items: center;
@@ -163,26 +218,11 @@ header {
   margin-bottom: -1rem;
 }
 
-.logo {
-  /* font-size: 36px; */
-  /* font-weight: 700; */
-  color: #1c1c1c;
-  line-height: 1;
-  text-decoration: none;
-  /* margin-top: -2rem; */
-}
-.logo img{
+.logo img {
   width: 20rem;
   margin-left: -2.8rem;
 }
 
-/* .logo.gradient-text {
-  background: linear-gradient(90deg, #7b5dfd, #f6416c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
-
-/* Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -196,13 +236,12 @@ header {
   font-size: 16px;
   transition: color 0.3s ease, transform 0.3s ease-in-out;
 }
-.nav-links li a:hover {
+
+.nav-links li a:hover,
+.nav-links li a.active {
   color: #4caf50;
-  transform: scale(1.1);
 }
 
-
-/* Hamburger Icon */
 .hamburger {
   font-size: 24px;
   cursor: pointer;
@@ -218,66 +257,306 @@ header {
   color: #1c1c1c;
 }
 
+/* --- NEW Hero Section Style --- */
+.contact-hero {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+  color: #fff;
+}
 
-/* Responsive Media Queries */
-@media (max-width: 1024px) {
-  .top-header-content {
-    padding: 0 3%;
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-hero h1 {
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact-hero .subheading {
+  font-size: 20px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+/* Contact Section Styles */
+.contact-main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.highlight {
+  color: #4caf50;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+/* Form Styles (Solid Background) */
+.contact-left {
+  flex: 1;
+  min-width: 300px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.contact-left h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  background: #f7f7f7;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.contact-form .form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.contact-form button {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #333;
+  transform: scale(1.03);
+}
+
+/* Info Card Styles (GLASS EFFECT) */
+.contact-right {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-card {
+  display: flex;
+  gap: 20px;
+  padding: 25px;
+  border-radius: 16px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 36, 36, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.contact-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  color: #111;
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Map & WhatsApp Section */
+.whatsapp-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #f7f7f7;
+  margin-top: 40px;
+  border-radius: 16px;
+}
+
+.whatsapp-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.whatsapp-heading {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.whatsapp-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.whatsapp-action-btn {
+  background: #25D366;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.whatsapp-action-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+}
+
+.contact-map-box {
+  margin-top: 40px;
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Validation & Popup Styles */
+.input-group {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.error-text {
+  color: #ff4b4b;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.popup-box {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  transform: scale(0.8);
+  opacity: 0;
+  animation: popupIn 0.3s ease forwards;
+}
+
+.popup-icon {
+  font-size: 60px;
+  color: #2ecc71;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+#submitBtn {
+  background: #2ecc71;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#submitBtn:disabled {
+  background: #27ae60;
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  .contact-info {
-    gap: 20px;
-  }
-
-  .contact-info span:first-child {
-    display: none; /* Hide phone number on mobile */
+  to {
+    opacity: 1;
   }
 }
 
-
-
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
-  
-
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: white;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    display: none;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-  
-}
-
-
-@media (max-width: 768px) {
-  
-  .logo img{
-    width: 15rem;
-    margin-left: -1rem;
-    margin-top: 0.4rem;
+@keyframes popupIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-
-
-    
-/* Footer styles */
+/* Footer & Scrollbar */
 .farhanpharma-footer {
   background: linear-gradient(to right, #0c0c0c, #1e1e1e);
   color: #e4e4e4;
@@ -300,10 +579,6 @@ header {
   color: white;
 }
 
-.footer-about h2 span {
-  color: whitesmoke;
-}
-
 .footer-about p {
   margin: 15px 0;
   line-height: 1.6;
@@ -311,7 +586,6 @@ header {
 }
 
 .footer-address i {
-  color: whitesmoke;
   margin-right: 8px;
 }
 
@@ -338,8 +612,6 @@ header {
 
 .footer-links ul li a:hover {
   color: burlywood;
-  translate: scale(1.2);
-  transition: all 0.3s ease-in-out;
 }
 
 .footer-social .social-icons a {
@@ -351,18 +623,6 @@ header {
 
 .footer-social .social-icons a:hover {
   color: burlywood;
-  translate: scale(1.2);
-  transition: all 0.3s ease-in-out;
-}
-
-.footer-social .dev-credit {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #aaa;
-}
-
-.footer-social .dev-credit span {
-  color: whitesmoke;
 }
 
 .footer-bottom {
@@ -374,23 +634,6 @@ header {
   color: #888;
 }
 
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-about,
-  .footer-links,
-  .footer-social {
-    margin-bottom: 30px;
-  }
-
-  .footer-social .social-icons a {
-    margin: 0 10px;
-  }
-}
-/* Sexy Black Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -405,179 +648,74 @@ header {
   border: 2px solid #000;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(145deg, #666, #888);
-}
-
 * {
   scrollbar-width: thin;
   scrollbar-color: #555 #000;
 }
 
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .top-header-content {
+    padding: 0 3%;
+  }
 
-.contact-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 20px;
-  color: #fff;
+  .contact-info {
+    gap: 20px;
+  }
+
+  .contact-info span:first-child {
+    display: none;
+  }
 }
 
-.contact-heading {
-  text-align: center;
-  font-size: 4rem;
-  font-weight: 300;
-  margin-bottom: 10px;
-}
-
-.contact-subtext {
-  text-align: center;
-  color: #ccc;
-  font-size: 1.2rem;
-  margin-bottom: 50px;
-}
-
-.highlight {
-  color: #00ff99;
-}
-
-.contact-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: space-between;
-}
-
-.contact-left {
-  flex: 1;
-  min-width: 300px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-}
-
-.contact-left h2 {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  width: 100%;
-  background: #222;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  font-size: 1rem;
-}
-
-.contact-form .form-row {
-  display: flex;
-  gap: 10px;
-}
-
-.contact-form textarea {
-  height: 100px;
-  resize: none;
-}
-
-.contact-form button {
-  width: 100%;
-  background: linear-gradient(to right, #000000, #000000);
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.contact-form button:hover {
-  transform: scale(1.03);
-}
-
-/* Right side cards */
-.contact-right {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.contact-card {
-  display: flex;
-  gap: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 25px;
-  border-radius: 16px;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-}
-
-.card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #00ff99;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  color: #fff;
-  flex-shrink: 0;
-}
-
-.contact-card h3 {
-  margin: 0 0 6px;
-  font-size: 1.1rem;
-  color: #fff;
-}
-
-.contact-card p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #ccc;
-}
-
-/* Find Us section */
-.contact-map-box {
-  margin-top: 40px;
-  text-align: center;
-  padding: 20px;
-  background: #1c1c1c;
-  border-radius: 10px;
-}
-
-.map-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-top: 20px;
-}
-
-.map-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-
-/* Responsive */
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    display: none;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .logo img {
+    width: 15rem;
+    margin-left: -1rem;
+    margin-top: 0.4rem;
+  }
+
+  .contact-hero h1 {
+    font-size: 32px;
+  }
+
+  .contact-hero p {
+    font-size: 16px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-about,
+  .footer-links,
+  .footer-social {
+    margin-bottom: 30px;
+  }
+
   .contact-container {
     flex-direction: column;
   }
@@ -586,176 +724,11 @@ header {
     flex-direction: column;
   }
 }
-.input-group {
-  position: relative;
-  margin-bottom: 16px;
-}
 
-.error-text {
-  color: #ff4b4b;
-  font-size: 0.85rem;
-  margin-top: 4px;
-  display: block;
-}
+.contact-left,
+.contact-card,
+.whatsapp-section,
+.contact-map-box {
 
-
-/* 🔹 Popup Overlay */
-.popup-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fadeIn 0.3s ease forwards;
-}
-
-/* 🔹 Popup Box */
-.popup-box {
-  background: #111;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  color: #fff;
-  transform: scale(0.8);
-  opacity: 0;
-  animation: popupIn 0.3s ease forwards;
-}
-
-/* ✅ Success Icon */
-.popup-icon {
-  font-size: 60px;
-  color: #2ecc71;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-/* ✅ Message */
-.popup-message {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #eaeaea;
-  font-weight: 500;
-}
-
-/* ✅ Button */
-.popup-btn {
-  background: #2ecc71;
-  border: none;
-  padding: 10px 22px;
-  font-size: 15px;
-  font-weight: 300;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  font-family: 'Montserrat', sans-serif;
-}
-.popup-btn:hover {
-  background: #27ae60;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
-}
-.popup-btn:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* ✅ Animations */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-@keyframes popupIn {
-  to {transform: scale(1); opacity: 1;}
-}
-@keyframes popupOut {
-  from {transform: scale(1); opacity: 1;}
-  to {transform: scale(0.8); opacity: 0;}
-}
-
-/* 🔹 Button Styles */
-#submitBtn {
-  background: #2ecc71;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#submitBtn:disabled {
-  background: #27ae60;
-  cursor: not-allowed;
-}
-
-
-/* whatsapp  */
-
-/* 🔹 WhatsApp Section Styles (Unique Classes) */
-.whatsapp-section {
-  /* background: #0f0f0f; */
-  color: #fff;
-  padding: 60px 20px;
-  text-align: center;
-  font-family: 'Manrope', sans-serif;
-  /* border-top: 2px solid #25D366; */
-}
-
-.whatsapp-container {
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-.whatsapp-heading {
-  font-size: 40px;
-  font-weight: 300;
-  margin-bottom: 15px;
-}
-
-.whatsapp-text {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #ccc;
-  margin-bottom: 20px;
-}
-
-.whatsapp-details {
-  font-size: 15px;
-  margin-bottom: 25px;
-  color: #ddd;
-  line-height: 1.5;
-}
-
-.whatsapp-action-btn {
-  background: #25D366;
-  border: none;
-  padding: 14px 28px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.whatsapp-action-btn i {
-  font-size: 20px;
-}
-
-.whatsapp-action-btn:hover {
-  background: #1ebe5d;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-action-btn:active {
-  transform: translateY(0);
-  box-shadow: none;
+  border: 2px solid #e0e0e0;
 }
